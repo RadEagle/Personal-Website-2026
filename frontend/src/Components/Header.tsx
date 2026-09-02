@@ -5,6 +5,14 @@ interface DropdownProps {
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
+function NavTitle() {
+  return (
+    <h1 className="text-3xl font-medium">
+      <a href="#hero">🚀 Jon's Homepage</a>
+    </h1>
+  );
+}
+
 function HamburgerMenu(props: DropdownProps) {
   return (
     <button
@@ -42,8 +50,9 @@ function DesktopHeader(props: DropdownProps) {
   return (
     <section
       id="desktop-header"
-      className="max-w-4xl mx-auto p-4 grid justify-between items-center"
+      className="max-w-4xl mx-auto p-4 flex justify-between items-center"
     >
+      <NavTitle />
       <HamburgerMenu active={props.active} onClick={props.onClick} />
       <DesktopNavBar />
     </section>
