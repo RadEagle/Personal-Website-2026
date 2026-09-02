@@ -21,7 +21,7 @@
 }
 
 @theme {
-  --animate-open-menu: open-menu 0.1s ease-in-out forwards;
+  --animate-open-menu: open-menu 0.30s ease-out forwards;
   --color-papayawhip-light: #fef4e4;
   --color-papayawhip: #ffefd5;
   --color-papayawhip-dark: #fee5bc;
