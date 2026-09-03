@@ -8,7 +8,7 @@ interface DropdownProps {
 function NavTitle() {
   return (
     <h1 className="text-3xl font-medium">
-      <a href="#hero">🚀 Jon's Homepage</a>
+      <a href="#hero">🌌 Jon's Homepage</a>
     </h1>
   );
 }
