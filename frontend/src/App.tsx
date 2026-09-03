@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import "./App.css";
 import { Header } from "./Components/Header";
-import { ViteStarter, ViteNextSteps } from "./Components/Vite";
+import { Hero } from "./Components/Hero";
+import { ViteNextSteps } from "./Components/Vite";
 
 function App() {
   // set the title of the page
@@ -12,7 +13,7 @@ function App() {
   return (
     <>
       <Header />
-      <ViteStarter />
+      <Hero />
       <ViteNextSteps />
     </>
   );

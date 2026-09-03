@@ -38,10 +38,7 @@ function DesktopNavBar() {
         Projects
       </a>
       {/* <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className="nav-text">Donate</a> */}
-
-      {/* <a href="javascript:void(0);" className="dropdown" onClick="dropDown()">
-                <img height="30" src="<?php echo $append ?>img/menu.png" alt="Menu" />
-            </a> */}
+      {/* <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className="nav-text">Contact</a> */}
     </nav>
   );
 }
