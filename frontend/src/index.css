@@ -22,6 +22,7 @@
 
 @theme {
   --animate-open-menu: open-menu 0.3s ease-out;
+  --animate-fade-in: fade-in 0.75s ease-out;
   --color-papayawhip-light: #fef4e4;
   --color-papayawhip: #ffefd5;
   --color-papayawhip-dark: #fee5bc;
@@ -32,6 +33,17 @@
     }
     100% {
       transform: scaleY(1);
+    }
+  }
+
+  @keyframes fade-in {
+    0% {
+        opacity: 0;
+        transform: translateY(2.5%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0%);
     }
   }
 }

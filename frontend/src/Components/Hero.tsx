@@ -67,7 +67,7 @@ function Hero() {
           src={portrait}
           alt="Developer Portrait"
           className="absolute bottom-0 left-0 -z-1 h-full w-auto max-w-none
-                    translate-x-[max(-80px,calc((100cqi-500px-0.25rem)/2-50%))]"
+                    translate-x-[max(-80px,calc((100cqi-500px-0.25rem)/2-50%))] animate-fade-in"
         />
       </section>
     </>
