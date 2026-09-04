@@ -15,27 +15,16 @@ function Hero() {
           className="grid grid-rows-[auto_auto] gap-2 text-left content-start m-2"
         >
           <div className={`${blob}`} id="intro-blob">
-            <h1 className="text-white text-3xl font-bold">Hi there!</h1>
-            <p id="about-me" className="text-white">
-              My name is Jonathan Chau and I am a software developer who has
-              devoted time to write programs to help people solve everyday
-              problems as well as saving lives. If you have a problem that you
-              would like to reach out to me to, you can{" "}
-              <a
-                id="email"
-                href="mailto:jonathanqchau@gmail.com"
-                className="text-sky-400 hover:opacity-60 duration-200 ease-in-out"
-              >
-                email me here
+            <p id="intro-id" className="text-white text-xl">I'm Jonathan Chau</p>
+            <h2 className="text-white text-2xl font-bold">I build websites and applications that solve everyday problems and saves lives.</h2>
+            <div id="intro-blob-buttons" className="flex justify-around gap-2">
+              <a type="button" href="about-me" className="bg-gray-300 border-2 border-black text-black text-center font-bold rounded-md leading-7.5 w-full hover:scale-102 duration-200 ease-in-out">
+                About Me
               </a>
-              .
-            </p>
-            <a
-              href="about-me"
-              className="text-sky-400 hover:opacity-60 duration-200 ease-in-out"
-            >
-              Learn more about me!
-            </a>
+              <a type="button" href="mailto:jonathanqchau@gmail.com" className="bg-orange-400 border-2 border-black text-white text-center font-bold rounded-md leading-7.5 w-full hover:scale-102 duration-200 ease-in-out">
+                Contact Me
+              </a>
+            </div>
           </div>
           <div className={`${blob}`} id="project-blob">
             <h2 className="text-white text-xl font-bold">
@@ -58,7 +47,7 @@ function Hero() {
                 id="proj-caption"
                 className="bg-[rgb(0,0,0,0.65)] text-white text-md rounded-b-xl h-7.5 w-full leading-7.5 absolute bottom-0 inset-x-0 mx-auto z-2"
               >
-                Is kanji really scary?
+                Is kanji still really scary?
               </div>
             </div>
           </div>
