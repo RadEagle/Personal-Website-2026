@@ -8,18 +8,6 @@
   @apply [&>div::before]:translate-y-0 [&>div::before]:rotate-45 [&>div::after]:translate-y-0 [&>div::after]:-rotate-45 [&>div]:bg-transparent [&>div]:rotate-720;
 }
 
-@custom-variant widescreen {
-  @media (min-aspect-ratio: 3/2) {
-    @slot;
-  }
-}
-
-@custom-variant tallscreen {
-  @media (max-aspect-ratio: 13/20) {
-    @slot;
-  }
-}
-
 @theme {
   --animate-open-menu: open-menu 0.3s ease-out;
   --animate-fade-in: fade-in 0.75s ease-out;
