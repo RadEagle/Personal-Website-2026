@@ -8,54 +8,49 @@ describe("Header", () => {
     render(<Header />);
   });
 
+  const getMobileMenu = () =>
+    screen.getByRole("navigation", { name: /mobile/i })
+      .parentElement as HTMLElement;
+
+  const getHamburger = () => screen.getByRole("button", { name: /open menu/i });
+
   test("renders the hamburger button", () => {
-    expect(
-      screen.getByRole("button", { name: /open menu/i }),
-    ).toBeInTheDocument();
+    expect(getHamburger()).toBeInTheDocument();
   });
 
   test("mobile menu is hidden on load", () => {
-    const mobileMenu = screen.getByRole("navigation", { name: /mobile/i })
-      .parentElement as HTMLElement;
-
-    expect(mobileMenu).toHaveClass("hidden");
+    expect(getMobileMenu()).toHaveClass("hidden");
   });
 
   test("mobile menu is visible on click", async () => {
     const user = userEvent.setup();
-    const hamburger = screen.getByRole("button", { name: /open menu/i });
-    const mobileMenu = screen.getByRole("navigation", { name: /mobile/i })
-      .parentElement as HTMLElement;
 
-    await user.click(hamburger);
+    await user.click(getHamburger());
 
-    expect(mobileMenu).toHaveClass("flex");
+    expect(getMobileMenu()).toHaveClass("flex");
   });
 
   test("hamburger click removes menu", async () => {
     const user = userEvent.setup();
-    const hamburger = screen.getByRole("button", { name: /open menu/i });
-    const mobileMenu = screen.getByRole("navigation", { name: /mobile/i })
-      .parentElement as HTMLElement;
 
-    await user.click(hamburger);
-    await user.click(hamburger);
+    await user.click(getHamburger());
 
-    expect(mobileMenu).toHaveClass("hidden");
+    expect(getMobileMenu()).toHaveClass("flex");
+
+    await user.click(getHamburger());
+
+    expect(getMobileMenu()).toHaveClass("hidden");
   });
 
-  test("clicking on mobile menu removes menu", async () => {
+  test("mobile menu click removes menu", async () => {
     const user = userEvent.setup();
-    const hamburger = screen.getByRole("button", { name: /open menu/i });
-    const mobileMenu = screen.getByRole("navigation", { name: /mobile/i })
-      .parentElement as HTMLElement;
 
-    await user.click(hamburger);
+    await user.click(getHamburger());
 
-    expect(mobileMenu).toHaveClass("flex");
+    expect(getMobileMenu()).toHaveClass("flex");
 
-    await user.click(mobileMenu);
+    await user.click(getMobileMenu());
 
-    expect(mobileMenu).toHaveClass("hidden");
+    expect(getMobileMenu()).toHaveClass("hidden");
   });
 });
