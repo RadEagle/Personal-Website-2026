@@ -7,21 +7,44 @@ function Hero() {
     <>
       <section
         id="hero"
-        className="@container relative grid section-min-height grid-cols-[1fr_500px] gap-1"
+        className="@container relative grid section-min-height md:grid-cols-[1fr_500px] gap-1"
       >
-        <div id="hero-portrait" aria-hidden="true" />
+        <div
+          id="hero-portrait"
+          aria-hidden="true"
+          className="flex justify-center"
+        >
+          <img
+            src={portrait}
+            alt="Developer Portrait"
+            className="block md:hidden"
+          />
+        </div>
         <div
           id="hero-blobs"
           className="grid grid-rows-[auto_auto] gap-2 text-left content-start m-2"
         >
           <div className={`${blob}`} id="intro-blob">
-            <p id="intro-id" className="text-white text-xl">I'm Jonathan Chau</p>
-            <h2 className="text-white text-2xl font-bold">I build websites and applications that solve everyday problems and saves lives.</h2>
+            <p id="intro-id" className="text-white text-xl">
+              I'm Jonathan Chau
+            </p>
+            <h2 className="text-white text-2xl font-bold">
+              I build websites and applications that solve everyday problems and
+              saves lives.
+            </h2>
             <div id="intro-blob-buttons" className="flex justify-around gap-2">
-              <a type="button" href="about-me" className="bg-gray-300 border-2 border-black text-black text-center font-bold rounded-md leading-7.5 w-full hover:scale-102 duration-200 ease-in-out">
+              <a
+                type="button"
+                href="about-me"
+                className="bg-gray-300 border-2 border-black text-black text-center font-bold rounded-md leading-7.5 w-full hover:scale-102 duration-200 ease-in-out"
+              >
                 About Me
               </a>
-              <a type="button" href="mailto:jonathanqchau@gmail.com" className="bg-orange-400 border-2 border-black text-white text-center font-bold rounded-md leading-7.5 w-full hover:scale-102 duration-200 ease-in-out">
+              <a
+                type="button"
+                href="mailto:jonathanqchau@gmail.com"
+                className="bg-orange-400 border-2 border-black text-white text-center font-bold rounded-md leading-7.5 w-full hover:scale-102 duration-200 ease-in-out"
+              >
                 Contact Me
               </a>
             </div>
@@ -55,8 +78,7 @@ function Hero() {
         <img
           src={portrait}
           alt="Developer Portrait"
-          className="absolute bottom-0 left-0 -z-1 h-full w-auto max-w-none
-                    translate-x-[max(-80px,calc((100cqi-500px-0.25rem)/2-50%))] animate-fade-in"
+          className="absolute bottom-0 left-0 -z-1 h-full w-auto max-w-none translate-x-[max(-80px,calc((100cqi-500px-0.25rem)/2-50%))] animate-fade-in hidden md:block"
         />
       </section>
     </>
