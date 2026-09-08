@@ -19,6 +19,7 @@ const HamburgerMenu = (props: DropdownProps) => {
       id="hamburger-button"
       className={`text-3xl md:hidden focus:outline-none cursor-pointer relative w-8 h-8  ${props.active ? "toggle-btn" : ""}`}
       onClick={props.onClick}
+      aria-label="open menu"
     >
       <div className="bg-white w-8 h-1 rounded absolute top-4 -mt-0.5 transition-all duration-300 before:content-[''] before:bg-white before:w-8 before:h-1 before:absolute before:-translate-x-4 before:-translate-y-3 before:transition-all before:duration-300 after:content-[''] after:bg-white after:w-8 after:h-1 after:absolute after:-translate-x-4 after:translate-y-3 after:transition-all after:duration-300"></div>
     </button>
@@ -65,7 +66,7 @@ const MobileMenu = (props: DropdownProps) => {
     >
       <nav
         className="flex flex-col min-h-screen items-center py-8"
-        aria-lavel="mobile"
+        aria-label="mobile"
       >
         <a
           href="<?php echo $append ?>"
