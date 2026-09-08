@@ -5,15 +5,15 @@ interface DropdownProps {
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-function NavTitle() {
+const NavTitle = () => {
   return (
     <h1 className="text-3xl font-medium">
       <a href="#hero">🌌 Jon's Homepage</a>
     </h1>
   );
-}
+};
 
-function HamburgerMenu(props: DropdownProps) {
+const HamburgerMenu = (props: DropdownProps) => {
   return (
     <button
       id="hamburger-button"
@@ -23,9 +23,9 @@ function HamburgerMenu(props: DropdownProps) {
       <div className="bg-white w-8 h-1 rounded absolute top-4 -mt-0.5 transition-all duration-300 before:content-[''] before:bg-white before:w-8 before:h-1 before:absolute before:-translate-x-4 before:-translate-y-3 before:transition-all before:duration-300 after:content-[''] after:bg-white after:w-8 after:h-1 after:absolute after:-translate-x-4 after:translate-y-3 after:transition-all after:duration-300"></div>
     </button>
   );
-}
+};
 
-function DesktopNavBar() {
+const DesktopNavBar = () => {
   return (
     <nav className="hidden md:block space-x-8 text-xl" aria-label="main">
       <a href="<?php echo $append ?>" className="nav-text">
@@ -41,9 +41,9 @@ function DesktopNavBar() {
       {/* <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className="nav-text">Contact</a> */}
     </nav>
   );
-}
+};
 
-function DesktopHeader(props: DropdownProps) {
+const DesktopHeader = (props: DropdownProps) => {
   return (
     <section
       id="desktop-header"
@@ -54,9 +54,9 @@ function DesktopHeader(props: DropdownProps) {
       <DesktopNavBar />
     </section>
   );
-}
+};
 
-function MobileMenu(props: DropdownProps) {
+const MobileMenu = (props: DropdownProps) => {
   return (
     <section
       id="mobile-menu"
@@ -88,9 +88,9 @@ function MobileMenu(props: DropdownProps) {
       </nav>
     </section>
   );
-}
+};
 
-function Header() {
+const Header = () => {
   const [dropdownActive, setDropdownActive] = useState(false);
 
   const handleToggleDropdown = () => {
@@ -103,6 +103,6 @@ function Header() {
       <MobileMenu active={dropdownActive} onClick={handleToggleDropdown} />
     </header>
   );
-}
+};
 
 export { Header };

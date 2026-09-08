@@ -2,7 +2,7 @@ import portrait from "../assets/portrait.png";
 import kanji from "../assets/kanji.jpeg";
 import { blob } from "../Library/styles.ts";
 
-function Hero() {
+const Hero = () => {
   return (
     <>
       <section
@@ -83,6 +83,6 @@ function Hero() {
       </section>
     </>
   );
-}
+};
 
 export { Hero };

@@ -3,7 +3,7 @@ import reactLogo from "../assets/react.svg";
 import viteLogo from "../assets/vite.svg";
 import heroImg from "../assets/hero.png";
 
-function ViteStarter() {
+const ViteStarter = () => {
   return (
     <>
       <section id="center" className="m-4">
@@ -22,9 +22,9 @@ function ViteStarter() {
       </section>
     </>
   );
-}
+};
 
-function ViteCounter() {
+const ViteCounter = () => {
   const [count, setCount] = useState(0);
 
   return (
@@ -37,9 +37,9 @@ function ViteCounter() {
       </button>
     </>
   );
-}
+};
 
-function ViteNextSteps() {
+const ViteNextSteps = () => {
   return (
     <>
       <section id="next-steps">
@@ -124,6 +124,6 @@ function ViteNextSteps() {
       </section>
     </>
   );
-}
+};
 
 export { ViteStarter, ViteCounter, ViteNextSteps };

@@ -4,7 +4,7 @@ import { Header } from "./Components/Header";
 import { Hero } from "./Components/Hero";
 import { ViteNextSteps } from "./Components/Vite";
 
-function App() {
+const App = () => {
   // set the title of the page
   useEffect(() => {
     document.title = "Jon's Homepage";
@@ -17,6 +17,6 @@ function App() {
       <ViteNextSteps />
     </>
   );
-}
+};
 
 export default App;
