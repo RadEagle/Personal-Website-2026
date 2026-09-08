@@ -9,3 +9,11 @@ test("renders the hamburger button", () => {
     screen.getByRole("button", { name: /open menu/i }),
   ).toBeInTheDocument();
 });
+
+test("mobile menu is hidden on load", () => {
+    const mobileMenu = screen.getByRole("navigation", {name: /mobile/i}).parentElement as HTMLElement
+
+    expect(
+        mobileMenu
+      ).toHaveClass("hidden");
+});
