@@ -1,4 +1,9 @@
-import { resumeLink } from "../Library/data";
+import {
+  email,
+  githubUsername,
+  linkedInUsername,
+  resumeLink,
+} from "../Library/data";
 import emailIcon from "../assets/email.png";
 import resumeIcon from "../assets/resume.png";
 import linkedinIcon from "../assets/linkedin.png";
@@ -7,14 +12,14 @@ interface FooterButtonProps {
   href: string;
   imgIcon?: string;
   svgIcon?: string;
-  isEmail?: boolean;
+  openNewTab?: boolean;
   label: string;
 }
 
 const FooterButton = (props: FooterButtonProps) => {
   return (
     <li>
-      <a href={props.href} target={props.isEmail ? "" : "_blank"}>
+      <a href={props.href} target={props.openNewTab ? "_blank" : "undefined"}>
         {props.imgIcon ? (
           <img className="logo" src={props.imgIcon} alt="" />
         ) : null}
@@ -57,21 +62,27 @@ const RightFooter = () => {
       <p>Using any of the following below:</p>
       <ul>
         <FooterButton
-          href="mailto:jonathanqchau@gmail.com"
+          href={`mailto:${email}`}
           label="Email"
           imgIcon={emailIcon}
-          isEmail={true}
         />
-        <FooterButton href={resumeLink} label="Resume" imgIcon={resumeIcon} />
         <FooterButton
-          href="https://www.linkedin.com/in/jonathanqchau/"
+          href={resumeLink}
+          label="Resume"
+          imgIcon={resumeIcon}
+          openNewTab={true}
+        />
+        <FooterButton
+          href={`https://www.linkedin.com/in/${linkedInUsername}`}
           label="LinkedIn"
           imgIcon={linkedinIcon}
+          openNewTab={true}
         />
         <FooterButton
-          href="https://github.com/RadEagle"
+          href={`https://github.com/${githubUsername}`}
           label="GitHub"
           svgIcon="/icons.svg#github-icon"
+          openNewTab={true}
         />
       </ul>
     </div>

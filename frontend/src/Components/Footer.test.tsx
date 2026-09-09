@@ -1,7 +1,14 @@
 import { render, screen } from "@testing-library/react";
-import { beforeEach, describe, expect, test } from "vitest";
+import { beforeEach, describe, expect, test, vi } from "vitest";
 import { Footer } from "./Footer";
-import { resumeLink } from "../Library/data";
+
+vi.mock("../Library/data", () => ({
+  email: "arnold@example.com",
+  resumeLink:
+    "https://drive.google.com/file/d/mockup-resume-link/view?usp=sharing",
+  linkedInUsername: "shenbelton",
+  githubUsername: "DreadRavenous",
+}));
 
 describe("Footer", () => {
   beforeEach(() => {
@@ -15,14 +22,17 @@ describe("Footer", () => {
     const email = screen.getByRole("link", { name: /email/i });
 
     expect(email).toBeVisible();
-    expect(email).toHaveAttribute("href", "mailto:jonathanqchau@gmail.com");
+    expect(email).toHaveAttribute("href", "mailto:arnold@example.com");
   });
 
   test("Resume works", () => {
     const resume = screen.getByRole("link", { name: /resume/i });
 
     expect(resume).toBeVisible();
-    expect(resume).toHaveAttribute("href", resumeLink);
+    expect(resume).toHaveAttribute(
+      "href",
+      "https://drive.google.com/file/d/mockup-resume-link/view?usp=sharing",
+    );
   });
 
   test("LinkedIn works", () => {
@@ -31,7 +41,7 @@ describe("Footer", () => {
     expect(linkedin).toBeVisible();
     expect(linkedin).toHaveAttribute(
       "href",
-      "https://www.linkedin.com/in/jonathanqchau/",
+      "https://www.linkedin.com/in/shenbelton",
     );
   });
 
@@ -39,6 +49,6 @@ describe("Footer", () => {
     const github = screen.getByRole("link", { name: /github/i });
 
     expect(github).toBeVisible();
-    expect(github).toHaveAttribute("href", "https://github.com/RadEagle");
+    expect(github).toHaveAttribute("href", "https://github.com/DreadRavenous");
   });
 });

@@ -9,5 +9,11 @@ export const headlineText =
 export const projectCaptionText = "Is kanji still really scary?";
 
 // Footer Component
+export const email = "jonathanqchau@gmail.com";
+
 export const resumeLink =
   "https://drive.google.com/file/d/17OkYbt3YDl1HKstxsX8Zf0b9EOqdCFMq/view?usp=sharing";
+
+export const linkedInUsername = "jonathanqchau";
+
+export const githubUsername = "RadEagle";
