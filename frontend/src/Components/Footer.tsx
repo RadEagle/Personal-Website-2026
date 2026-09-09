@@ -19,7 +19,11 @@ interface FooterButtonProps {
 const FooterButton = (props: FooterButtonProps) => {
   return (
     <li>
-      <a href={props.href} target={props.openNewTab ? "_blank" : undefined}>
+      <a
+        href={props.href}
+        target={props.openNewTab ? "_blank" : undefined}
+        rel={props.openNewTab ? "noopener noreferrer" : undefined}
+      >
         {props.icon ? (
           <img className="button-icon" src={props.icon} alt="" />
         ) : null}

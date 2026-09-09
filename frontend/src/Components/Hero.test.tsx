@@ -6,6 +6,7 @@ vi.mock("../Library/data", () => ({
   myName: "John Smith",
   headlineText: "Cutting trees since 1580.",
   projectCaptionText: "Amazing house tour!!!",
+  email: "amongus@example.com",
 }));
 
 describe("Hero", () => {
@@ -23,5 +24,12 @@ describe("Hero", () => {
 
   test("project caption appears in hero", () => {
     expect(screen.getByText("Amazing house tour!!!")).toBeInTheDocument();
+  });
+
+  test("contact button opens up email", () => {
+    expect(screen.getByRole("link", { name: /contact me/i })).toHaveAttribute(
+      "href",
+      "mailto:amongus@example.com",
+    );
   });
 });
