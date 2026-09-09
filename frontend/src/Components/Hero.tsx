@@ -1,7 +1,12 @@
 import portrait from "../assets/portrait.png";
 import kanji from "../assets/kanji.jpeg";
 import { blob } from "../Library/styles";
-import { headlineText, myName, projectCaptionText } from "../Library/data";
+import {
+  email,
+  headlineText,
+  myName,
+  projectCaptionText,
+} from "../Library/data";
 
 const MobileHeroPortrait = () => {
   return (
@@ -40,7 +45,7 @@ const AboutMeBlob = () => {
           About Me
         </a>
         <a
-          href="mailto:jonathanqchau@gmail.com"
+          href={`mailto:${email}`}
           className="bg-orange-400 border-2 border-black text-white text-center font-bold rounded-md leading-7.5 w-full hover:scale-102 duration-200 ease-in-out"
         >
           Contact Me

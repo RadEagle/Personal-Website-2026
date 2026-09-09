@@ -7,11 +7,11 @@ import {
 import emailIcon from "../assets/email.png";
 import resumeIcon from "../assets/resume.png";
 import linkedinIcon from "../assets/linkedin.png";
+import githubIcon from "../assets/github.png";
 
 interface FooterButtonProps {
   href: string;
-  imgIcon?: string;
-  svgIcon?: string;
+  icon?: string;
   openNewTab?: boolean;
   label: string;
 }
@@ -19,14 +19,9 @@ interface FooterButtonProps {
 const FooterButton = (props: FooterButtonProps) => {
   return (
     <li>
-      <a href={props.href} target={props.openNewTab ? "_blank" : "undefined"}>
-        {props.imgIcon ? (
-          <img className="logo" src={props.imgIcon} alt="" />
-        ) : null}
-        {props.svgIcon ? (
-          <svg className="button-icon" role="presentation" aria-hidden="true">
-            <use href={props.svgIcon}></use>
-          </svg>
+      <a href={props.href} target={props.openNewTab ? "_blank" : undefined}>
+        {props.icon ? (
+          <img className="button-icon" src={props.icon} alt="" />
         ) : null}
         {props.label}
       </a>
@@ -61,27 +56,23 @@ const RightFooter = () => {
       <h2>Connect with me</h2>
       <p>Using any of the following below:</p>
       <ul>
-        <FooterButton
-          href={`mailto:${email}`}
-          label="Email"
-          imgIcon={emailIcon}
-        />
+        <FooterButton href={`mailto:${email}`} label="Email" icon={emailIcon} />
         <FooterButton
           href={resumeLink}
           label="Resume"
-          imgIcon={resumeIcon}
+          icon={resumeIcon}
           openNewTab={true}
         />
         <FooterButton
           href={`https://www.linkedin.com/in/${linkedInUsername}`}
           label="LinkedIn"
-          imgIcon={linkedinIcon}
+          icon={linkedinIcon}
           openNewTab={true}
         />
         <FooterButton
           href={`https://github.com/${githubUsername}`}
           label="GitHub"
-          svgIcon="/icons.svg#github-icon"
+          icon={githubIcon}
           openNewTab={true}
         />
       </ul>
