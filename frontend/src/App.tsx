@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import "./App.css";
 import { Header } from "./Components/Header";
 import { Hero } from "./Components/Hero";
-import { ViteNextSteps } from "./Components/Vite";
+import { Footer } from "./Components/Footer";
 
 const App = () => {
   // set the title of the page
@@ -14,7 +14,7 @@ const App = () => {
     <>
       <Header />
       <Hero />
-      <ViteNextSteps />
+      <Footer />
     </>
   );
 };
