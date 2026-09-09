@@ -1,6 +1,7 @@
 import portrait from "../assets/portrait.png";
 import kanji from "../assets/kanji.jpeg";
-import { blob } from "../Library/styles.ts";
+import { blob } from "../Library/styles";
+import { headlineText, myName, projectCaptionText } from "../Library/data";
 
 const MobileHeroPortrait = () => {
   return (
@@ -28,12 +29,9 @@ const AboutMeBlob = () => {
   return (
     <div className={blob} id="intro-blob">
       <p id="intro-id" className="text-white text-xl">
-        I'm Jonathan Chau
+        I'm {myName}
       </p>
-      <h2 className="text-white text-2xl font-bold">
-        I build websites and applications that solve everyday problems and save
-        lives.
-      </h2>
+      <h2 className="text-white text-2xl font-bold">{headlineText}</h2>
       <div id="intro-blob-buttons" className="flex justify-around gap-2">
         <a
           href="about-me"
@@ -73,7 +71,7 @@ const ProjectBlob = () => {
           id="proj-caption"
           className="bg-[rgb(0,0,0,0.65)] text-white text-md rounded-b-xl h-7.5 w-full leading-7.5 absolute bottom-0 inset-x-0 mx-auto z-2"
         >
-          Is kanji still really scary?
+          {projectCaptionText}
         </div>
       </div>
     </div>
