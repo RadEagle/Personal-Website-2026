@@ -16,7 +16,7 @@ const FooterButton = (props: FooterButtonProps) => {
     <li>
       <a href={props.href} target={props.isEmail ? "" : "_blank"}>
         {props.imgIcon ? (
-          <img className="button-icon" src={props.imgIcon} alt="" />
+          <img className="logo" src={props.imgIcon} alt="" />
         ) : null}
         {props.svgIcon ? (
           <svg className="button-icon" role="presentation" aria-hidden="true">
@@ -35,21 +35,13 @@ const LeftFooter = () => {
       <svg className="icon" role="presentation" aria-hidden="true">
         <use href="/icons.svg#documentation-icon"></use>
       </svg>
-      <h2>Documentation</h2>
-      <p>Your questions, answered</p>
+      <h2>Other Projects</h2>
+      <p>Access my previous work here:</p>
       <ul>
-        <li>
-          <a href="https://vite.dev/" target="_blank">
-            {/* <img className="logo" src={viteLogo} alt="" /> */}
-            Explore Vite
-          </a>
-        </li>
-        <li>
-          <a href="https://react.dev/" target="_blank">
-            {/* <img className="button-icon" src={reactLogo} alt="" /> */}
-            Learn more
-          </a>
-        </li>
+        <FooterButton
+          href="projects"
+          label="Coming soon! View past work here."
+        />
       </ul>
     </div>
   );
