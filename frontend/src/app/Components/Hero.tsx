@@ -39,7 +39,7 @@ const AboutMeBlob = () => {
       <h2 className="text-white text-2xl font-bold">{headlineText}</h2>
       <div id="intro-blob-buttons" className="flex justify-around gap-2">
         <a
-          href="about-me"
+          href="/about-me"
           className="bg-gray-300 border-2 border-black text-black text-center font-bold rounded-md leading-7.5 w-full hover:scale-102 duration-200 ease-in-out"
         >
           About Me

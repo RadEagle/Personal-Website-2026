@@ -26,6 +26,13 @@ describe("Hero", () => {
     expect(screen.getByText("Amazing house tour!!!")).toBeInTheDocument();
   });
 
+  test("about me button open up about me page", () => {
+    expect(screen.getByRole("link", { name: /about me/i })).toHaveAttribute(
+      "href",
+      "/about-me",
+    );
+  });
+
   test("contact button opens up email", () => {
     expect(screen.getByRole("link", { name: /contact me/i })).toHaveAttribute(
       "href",

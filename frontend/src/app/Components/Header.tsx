@@ -8,8 +8,8 @@ interface DropdownProps {
 
 const NavTitle = () => {
   return (
-    <h1 className="text-3xl font-medium">
-      <a href="#hero">🌌 Jon's Homepage</a>
+    <h1 id="nav-title" className="text-3xl font-medium">
+      <a href="/">🌌 Jon's Homepage</a>
     </h1>
   );
 };
@@ -29,14 +29,17 @@ const HamburgerMenu = (props: DropdownProps) => {
 
 const DesktopNavBar = () => {
   return (
-    <nav className="hidden md:block space-x-8 text-xl" aria-label="main">
-      <a href="" className="nav-text">
+    <nav
+      className="hidden md:block space-x-8 text-xl"
+      aria-label="desktop header"
+    >
+      <a href="/" className="nav-text">
         Home
       </a>
-      <a href="about-me" className="nav-text">
+      <a href="/about-me" className="nav-text">
         About Me
       </a>
-      <a href="projects" className="nav-text">
+      <a href="/projects" className="nav-text">
         Projects
       </a>
       {/* <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className="nav-text">Donate</a> */}
@@ -69,13 +72,19 @@ const MobileMenu = (props: DropdownProps) => {
         className="flex flex-col min-h-screen items-center py-8"
         aria-label="mobile"
       >
-        <a href="" className="w-full text-center py-6 hover:opacity-90">
+        <a href="/" className="w-full text-center py-6 hover:opacity-90">
           Home
         </a>
-        <a href="about-me" className="w-full text-center py-6 hover:opacity-90">
+        <a
+          href="/about-me"
+          className="w-full text-center py-6 hover:opacity-90"
+        >
           About Me
         </a>
-        <a href="projects" className="w-full text-center py-6 hover:opacity-90">
+        <a
+          href="/projects"
+          className="w-full text-center py-6 hover:opacity-90"
+        >
           Projects
         </a>
       </nav>
