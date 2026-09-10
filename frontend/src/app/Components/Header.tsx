@@ -30,13 +30,13 @@ const HamburgerMenu = (props: DropdownProps) => {
 const DesktopNavBar = () => {
   return (
     <nav className="hidden md:block space-x-8 text-xl" aria-label="main">
-      <a href="<?php echo $append ?>" className="nav-text">
+      <a href="" className="nav-text">
         Home
       </a>
-      <a href="<?php echo $append ?>about-me" className="nav-text">
+      <a href="about-me" className="nav-text">
         About Me
       </a>
-      <a href="<?php echo $append ?>projects" className="nav-text">
+      <a href="projects" className="nav-text">
         Projects
       </a>
       {/* <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className="nav-text">Donate</a> */}
@@ -70,19 +70,19 @@ const MobileMenu = (props: DropdownProps) => {
         aria-label="mobile"
       >
         <a
-          href="<?php echo $append ?>"
+          href=""
           className="w-full text-center py-6 hover:opacity-90"
         >
           Home
         </a>
         <a
-          href="<?php echo $append ?>about-me"
+          href="about-me"
           className="w-full text-center py-6 hover:opacity-90"
         >
           About Me
         </a>
         <a
-          href="<?php echo $append ?>projects"
+          href="projects"
           className="w-full text-center py-6 hover:opacity-90"
         >
           Projects
