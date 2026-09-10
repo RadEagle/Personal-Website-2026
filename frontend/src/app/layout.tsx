@@ -5,7 +5,7 @@ import "../index.css";
 
 export const metadata: Metadata = {
   title: "Jon's Homepage",
-  icons: "/favicon.svg"
+  icons: "/favicon.svg",
 };
 
 const App = ({ children }: { children: React.ReactNode }) => {
