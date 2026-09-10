@@ -7,9 +7,15 @@ interface ProjectEntryProps {
   imgSrc: string;
   imgAlt: string;
   link: string;
+  date: Date;
 }
 
 const ProjectEntry = (props: ProjectEntryProps) => {
+  const dateOptions: Intl.DateTimeFormatOptions = {
+    month: "long",
+    year: "numeric"
+  }
+
   return (
     <a href={props.link}
       className={`${blob} text-white text-start hover:scale-101 duration-200 ease-in-out`}
@@ -24,6 +30,7 @@ const ProjectEntry = (props: ProjectEntryProps) => {
       </div>
       <h2 className="text-xl font-bold">{props.title}</h2>
       <p>{props.description}</p>
+      <p className="text-gray-400 italic  mt-auto">{props.date.toLocaleDateString("en-US", dateOptions)}</p>
     </a>
   );
 };
@@ -36,6 +43,7 @@ const ProjectsList = () => {
     imgSrc: "/kanji.jpeg",
     imgAlt: "Kanji Project Image",
     link: "/projects/kanji",
+    date: new Date("9/10/2026")
   };
 
   return (
