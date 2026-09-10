@@ -1,21 +1,20 @@
 import { type Metadata } from "next";
 import { Header } from "./Components/Header";
 import { Footer } from "./Components/Footer";
-import "../index.css"
+import "../index.css";
 
 export const metadata: Metadata = {
-    title: "Jon's Homepage"
-}
+  title: "Jon's Homepage",
+};
 
-const App = ({children}: {children: React.ReactNode}) => {
-
+const App = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en">
-        <body>
-            <Header />
-            {children}
-            <Footer />
-        </body>
+      <body>
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 };

@@ -60,7 +60,11 @@ const RightFooter = () => {
       <h2>Connect with me</h2>
       <p>Using any of the following below:</p>
       <ul>
-        <FooterButton href={`mailto:${email}`} label="Email" icon={emailIcon.src} />
+        <FooterButton
+          href={`mailto:${email}`}
+          label="Email"
+          icon={emailIcon.src}
+        />
         <FooterButton
           href={resumeLink}
           label="Resume"

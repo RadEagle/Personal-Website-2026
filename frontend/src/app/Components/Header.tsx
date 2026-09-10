@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { useState } from "react";
 
 interface DropdownProps {
@@ -69,22 +69,13 @@ const MobileMenu = (props: DropdownProps) => {
         className="flex flex-col min-h-screen items-center py-8"
         aria-label="mobile"
       >
-        <a
-          href=""
-          className="w-full text-center py-6 hover:opacity-90"
-        >
+        <a href="" className="w-full text-center py-6 hover:opacity-90">
           Home
         </a>
-        <a
-          href="about-me"
-          className="w-full text-center py-6 hover:opacity-90"
-        >
+        <a href="about-me" className="w-full text-center py-6 hover:opacity-90">
           About Me
         </a>
-        <a
-          href="projects"
-          className="w-full text-center py-6 hover:opacity-90"
-        >
+        <a href="projects" className="w-full text-center py-6 hover:opacity-90">
           Projects
         </a>
       </nav>
