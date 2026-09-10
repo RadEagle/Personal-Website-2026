@@ -32,16 +32,7 @@ const ProjectsList = () => {
   const kanjiProps: ProjectEntryProps = {
     title: "Kanji Complexity Scanner",
     description:
-      "Are Japanese characters really that scary? Use this tool to find out!!",
-    imgSrc: "/kanji.jpeg",
-    imgAlt: "Kanji Project Image",
-    link: "/projects/kanji",
-  };
-
-  const kanjiProps2: ProjectEntryProps = {
-    title: "Kanji Scanner",
-    description:
-      "Are Japanese characters really that scary? Use this tool to find out!!",
+      "Are Japanese characters really that scary? Use this tool to find out!",
     imgSrc: "/kanji.jpeg",
     imgAlt: "Kanji Project Image",
     link: "/projects/kanji",
