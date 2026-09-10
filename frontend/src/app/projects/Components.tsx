@@ -38,8 +38,17 @@ const ProjectsList = () => {
     link: "/projects/kanji",
   };
 
+  const kanjiProps2: ProjectEntryProps = {
+    title: "Kanji Scanner",
+    description:
+      "Are Japanese characters really that scary? Use this tool to find out!!",
+    imgSrc: "/kanji.jpeg",
+    imgAlt: "Kanji Project Image",
+    link: "/projects/kanji",
+  };
+
   return (
-    <div className="grid auto-cols-auto justify-between gap-2">
+    <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-2">
       <ProjectEntry {...kanjiProps} />
     </div>
   );
