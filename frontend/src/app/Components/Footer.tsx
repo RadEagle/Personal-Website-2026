@@ -3,11 +3,11 @@ import {
   githubUsername,
   linkedInUsername,
   resumeLink,
-} from "../Library/data";
-import emailIcon from "../assets/email.png";
-import resumeIcon from "../assets/resume.png";
-import linkedinIcon from "../assets/linkedin.png";
-import githubIcon from "../assets/github.png";
+} from "../../Library/data";
+import emailIcon from "../../assets/email.png";
+import resumeIcon from "../../assets/resume.png";
+import linkedinIcon from "../../assets/linkedin.png";
+import githubIcon from "../../assets/github.png";
 
 interface FooterButtonProps {
   href: string;
@@ -60,23 +60,23 @@ const RightFooter = () => {
       <h2>Connect with me</h2>
       <p>Using any of the following below:</p>
       <ul>
-        <FooterButton href={`mailto:${email}`} label="Email" icon={emailIcon} />
+        <FooterButton href={`mailto:${email}`} label="Email" icon={emailIcon.src} />
         <FooterButton
           href={resumeLink}
           label="Resume"
-          icon={resumeIcon}
+          icon={resumeIcon.src}
           openNewTab={true}
         />
         <FooterButton
           href={`https://www.linkedin.com/in/${linkedInUsername}`}
           label="LinkedIn"
-          icon={linkedinIcon}
+          icon={linkedinIcon.src}
           openNewTab={true}
         />
         <FooterButton
           href={`https://github.com/${githubUsername}`}
           label="GitHub"
-          icon={githubIcon}
+          icon={githubIcon.src}
           openNewTab={true}
         />
       </ul>

@@ -1,18 +1,18 @@
-import portrait from "../assets/portrait.png";
-import kanji from "../assets/kanji.jpeg";
-import { blob } from "../Library/styles";
+import portrait from "../../assets/portrait.png";
+import kanji from "../../assets/kanji.jpeg";
+import { blob } from "../../Library/styles";
 import {
   email,
   headlineText,
   myName,
   projectCaptionText,
-} from "../Library/data";
+} from "../../Library/data";
 
 const MobileHeroPortrait = () => {
   return (
     <div id="hero-portrait" className="flex justify-center">
       <img
-        src={portrait}
+        src={portrait.src}
         alt="Developer Portrait"
         className="block md:hidden"
       />
@@ -23,7 +23,7 @@ const MobileHeroPortrait = () => {
 const DesktopHeroPortrait = () => {
   return (
     <img
-      src={portrait}
+      src={portrait.src}
       alt="Developer Portrait"
       className="absolute bottom-0 left-0 -z-1 h-full w-auto max-w-none translate-x-[max(-80px,calc((100cqi-500px-0.25rem)/2-50%))] animate-fade-in hidden md:block"
     />
@@ -68,7 +68,7 @@ const ProjectBlob = () => {
           <img
             id="proj-img"
             className="rounded-xl w-full block mx-auto"
-            src={kanji}
+            src={kanji.src}
             alt="Project Image"
           />
         </a>

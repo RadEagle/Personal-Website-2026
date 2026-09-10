@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, test, vi } from "vitest";
 import { Footer } from "./Footer";
 
-vi.mock("../Library/data", () => ({
+vi.mock("../../Library/data", () => ({
   email: "arnold@example.com",
   resumeLink:
     "https://drive.google.com/file/d/mockup-resume-link/view?usp=sharing",
