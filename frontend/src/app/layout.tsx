@@ -11,9 +11,9 @@ export const metadata: Metadata = {
 const App = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en">
-      <body>
+      <body id="root">
         <Header />
-        {children}
+        <main className="flex-1">{children}</main>
         <Footer />
       </body>
     </html>
