@@ -6,7 +6,8 @@ export const identity: string =
 export const proof: string =
   "Previously at Epic Systems (through Aug '25) • UCLA (M.S. Computer Science '23)";
 
-export const story: string = "I care whether end users can use what I built when they are already overloaded. In my time in Epic, I have learned how to manage a large codebase, perform code reviews, and collaborate across other teams and medical staff. Now, I ship products that help people in my community solve everyday problems, from resume tailoring, to language learning, to supplementing education on chemistry and physics.";
+export const story: string =
+  "I care whether end users can use what I built when they are already overloaded. In my time in Epic, I have learned how to manage a large codebase, perform code reviews, and collaborate across other teams and medical staff. Now, I ship products that help people in my community solve everyday problems, from resume tailoring, to language learning, to supplementing education on chemistry and physics.";
 
 export const skills: string[] = [
   "TypeScript",

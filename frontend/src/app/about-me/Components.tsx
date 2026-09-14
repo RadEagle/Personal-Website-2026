@@ -12,7 +12,7 @@ const Introduction = () => {
       <div className="flex flex-col gap-2 text-white text-start">
         <h2 className="text-2xl font-bold">About Me</h2>
         <p className="font-semibold">{identity}</p>
-        <p >{proof}</p>
+        <p>{proof}</p>
         <p className="text-gray-200 text-sm">{story}</p>
       </div>
       <div className="flex flex-col" id="img-container">
@@ -28,7 +28,9 @@ const Introduction = () => {
 
 const Capability = (props: CapabilityProps) => {
   const capabilities = props.capabilities.map((capability) => (
-    <span className="bg-white/20 rounded-lg px-2 py-1" key={capability}>{capability}</span>
+    <span className="bg-white/20 rounded-lg px-2 py-1" key={capability}>
+      {capability}
+    </span>
   ));
 
   return (
