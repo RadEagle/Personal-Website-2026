@@ -16,6 +16,7 @@ export const skills: string[] = [
   "C#",
   "PostgreSQL",
   "Tailwind CSS",
+  "Jest/Vitest",
   "Docker",
   "Redis",
   "AWS",
