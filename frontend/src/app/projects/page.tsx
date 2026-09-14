@@ -1,5 +1,5 @@
 import { blob } from "../../Library/styles";
-import { ProjectsList } from "./Components";
+import { ProjectsList, OtherProjectsList } from "./Components";
 
 const App = () => {
   return (
@@ -8,6 +8,10 @@ const App = () => {
         <h1 className="text-white text-2xl">Jon's Interactive Projects</h1>
       </div>
       <ProjectsList />
+      <div className={blob}>
+        <h1 className="text-white text-2xl">Other Past Projects</h1>
+      </div>
+      <OtherProjectsList />
     </div>
   );
 };
