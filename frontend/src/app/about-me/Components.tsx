@@ -28,13 +28,13 @@ const Introduction = () => {
 
 const Capability = (props: CapabilityProps) => {
   const capabilities = props.capabilities.map((capability) => (
-    <span className="mr-2" key={capability}>{capability}</span>
+    <span className="bg-white/20 rounded-lg px-2 py-1" key={capability}>{capability}</span>
   ));
 
   return (
     <div className={`${blob} text-start content-start`}>
       <h2 className="text-xl text-white font-semibold">{props.title}</h2>
-      <div className="text-gray-200 flex flex-wrap">{capabilities}</div>
+      <div className="text-gray-200 flex flex-wrap gap-1">{capabilities}</div>
     </div>
   );
 };
