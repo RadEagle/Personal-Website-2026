@@ -34,20 +34,18 @@ describe("Other Projects List", () => {
 
   test("Mock Other Project 1 is visible", () => {
     expect(screen.getByText("Mock Other Project 1")).toBeInTheDocument();
-    expect(screen.getByText("July - August 2025")).toBeInTheDocument();
+    expect(screen.getByText("Jul - Aug 2025")).toBeInTheDocument();
   });
   test("Mock Other Project 2 is visible", () => {
     expect(screen.getByText("Mock Other Project 2")).toBeInTheDocument();
-    expect(screen.getByText("April 2026")).toBeInTheDocument();
+    expect(screen.getByText("Apr 2026")).toBeInTheDocument();
   });
   test("Mock Other Project 3 is visible", () => {
     expect(screen.getByText("Mock Other Project 3")).toBeInTheDocument();
-    expect(screen.getByText("June 2026 - Present")).toBeInTheDocument();
+    expect(screen.getByText("Jun 2026 - Present")).toBeInTheDocument();
   });
   test("Mock Other Project 4 is visible", () => {
     expect(screen.getByText("Mock Other Project 4")).toBeInTheDocument();
-    expect(
-      screen.getByText("December 2025 - January 2026"),
-    ).toBeInTheDocument();
+    expect(screen.getByText("Dec 2025 - Jan 2026")).toBeInTheDocument();
   });
 });

@@ -17,7 +17,36 @@ interface OtherProjectEntryProps {
   organization: string;
   tools: string[];
   startDate: Date;
-  endDate: Date;
+  endDate?: Date | null;
+}
+
+function formatDateString(startDate: Date, endDate?: Date | null): string {
+  const dateOptions: Intl.DateTimeFormatOptions = {
+    month: "short",
+    year: "numeric",
+  };
+
+  const monthOnly: Intl.DateTimeFormatOptions = {
+    month: "short",
+  };
+
+  // start should only lose the year if the end date is a different month of the same year
+  let start;
+  if (
+    endDate &&
+    startDate.getFullYear() === endDate.getFullYear() &&
+    startDate.getMonth() != endDate.getMonth()
+  ) {
+    start = startDate.toLocaleDateString("en-US", monthOnly);
+  } else {
+    start = startDate.toLocaleDateString("en-US", dateOptions);
+  }
+
+  const end = endDate
+    ? endDate.toLocaleDateString("en-US", dateOptions)
+    : "Present";
+
+  return start === end ? start : `${start} - ${end}`;
 }
 
 const ProjectEntry = (props: ProjectEntryProps) => {
@@ -41,7 +70,7 @@ const ProjectEntry = (props: ProjectEntryProps) => {
       </div>
       <h2 className="text-xl font-bold">{props.title}</h2>
       <p>{props.description}</p>
-      <p className="text-gray-400 italic  mt-auto">
+      <p className="text-gray-400 italic mt-auto">
         {props.date.toLocaleDateString("en-US", dateOptions)}
       </p>
     </a>
@@ -65,18 +94,7 @@ const OtherProjectEntry = (props: OtherProjectEntryProps) => {
     </span>
   ));
 
-  const dateOptions: Intl.DateTimeFormatOptions = {
-    month: "long",
-    year: "numeric",
-  };
-
-  const startDate = props.startDate.toLocaleDateString("en-US", dateOptions);
-
-  let endDate;
-  endDate = props.endDate.toLocaleDateString("en-US", dateOptions);
-
-  let dateRange;
-  dateRange = `${startDate} - ${endDate}`;
+  const dateString = formatDateString(props.startDate, props.endDate);
 
   return (
     <div
@@ -85,7 +103,7 @@ const OtherProjectEntry = (props: OtherProjectEntryProps) => {
       <div className="font-semibold">{props.title}</div>
       <div>{props.organization}</div>
       <div className="flex flex-wrap gap-1">{tools}</div>
-      <div>{dateRange}</div>
+      <div className="text-gray-300 italic">{dateString}</div>
     </div>
   );
 };
@@ -98,7 +116,7 @@ const OtherProjectsList = () => {
           key={id}
           {...props}
           startDate={new Date(props.startDate)}
-          endDate={new Date(props.endDate)}
+          endDate={props.endDate ? new Date(props.endDate) : null}
         />
       ))}
     </div>
