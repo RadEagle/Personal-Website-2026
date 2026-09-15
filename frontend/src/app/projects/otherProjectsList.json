@@ -1,9 +1,58 @@
 {
-  "projectProps": {
+  "flightboard": {
     "title": "Flightboard Consents Viewer",
     "organization": "Epic Systems",
     "tools": ["TypeScript", "React", "SCSS", "C#", "M"],
     "startDate": "11/8/2023",
     "endDate": "7/17/2024"
+  },
+  "consults": {
+    "title": "Consults AI Agent",
+    "organization": "Epic Systems",
+    "tools": ["AI Orchestrator", "C#", "M", "Docker", "Evaluator Agents"],
+    "startDate": "8/10/2024",
+    "endDate": "8/10/2025"
+  },
+  "voicebox": {
+    "title": "VoiceBox",
+    "organization": "UCLA",
+    "tools": ["Python", "Numpy", "Signal Processing"],
+    "startDate": "1/20/2023",
+    "endDate": "6/10/2023"
+  },
+  "splash": {
+    "title": "Splash Administration Website",
+    "organization": "UCLA",
+    "tools": ["JavaScript", "PHP"],
+    "startDate": "9/22/2021",
+    "endDate": "2/14/2022"
+  },
+  "yuegui": {
+    "title": "Yuegui Discord Bot",
+    "organization": "UCLA",
+    "tools": ["JavaScript", "Repl.it"],
+    "startDate": "12/29/2022",
+    "endDate": "11/10/2023"
+  },
+  "first-personal": {
+    "title": "First Personal Website",
+    "organization": "Independent",
+    "tools": ["JavaScript", "HTML", "CSS", "PHP", "SQL"],
+    "startDate": "1/1/2021",
+    "endDate": "9/1/2021"
+  },
+  "fish-tree": {
+    "title": "Fish Tree of Life",
+    "organization": "UCLA",
+    "tools": ["R", "Docker"],
+    "startDate": "5/21/2021",
+    "endDate": "10/10/2022"
+  },
+  "cheer": {
+    "title": "CharaCheer",
+    "organization": "Independent",
+    "tools": ["JavaScript", "HTML", "CSS", "PHP", "SQL"],
+    "startDate": "3/1/2021",
+    "endDate": "3/8/2021"
   }
 }

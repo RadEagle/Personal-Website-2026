@@ -98,12 +98,12 @@ const OtherProjectEntry = (props: OtherProjectEntryProps) => {
 
   return (
     <div
-      className={`${blob} grid-cols-[2fr_1fr_3fr_1fr] text-white justify-items-start items-start text-sm`}
+      className={`${blob} grid-cols-[2fr_1fr_3fr_1.1fr] text-white justify-items-start items-start text-sm`}
     >
       <div className="font-semibold">{props.title}</div>
       <div>{props.organization}</div>
       <div className="flex flex-wrap gap-1">{tools}</div>
-      <div className="text-gray-300 italic">{dateString}</div>
+      <div className="text-gray-300 italic justify-self-end">{dateString}</div>
     </div>
   );
 };
