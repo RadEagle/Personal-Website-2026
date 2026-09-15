@@ -109,9 +109,25 @@ const OtherProjectEntry = (props: OtherProjectEntryProps) => {
 };
 
 const OtherProjectsList = () => {
+  const sortedOtherProjects = Object.entries(otherProjectsList).sort(
+    ([_a, a_props], [_b, b_props]) => {
+      const aStart = new Date(a_props.startDate).getTime();
+      const aEnd = a_props.endDate
+        ? new Date(a_props.endDate).getTime()
+        : Infinity;
+      const bStart = new Date(b_props.startDate).getTime();
+      const bEnd = b_props.endDate
+        ? new Date(b_props.endDate).getTime()
+        : Infinity;
+
+      const startDiff = bStart - aStart;
+      const endDiff = bEnd - aEnd;
+      return endDiff || startDiff;
+    },
+  );
   return (
     <div className="flex flex-col gap-y-2">
-      {Object.entries(otherProjectsList).map(([id, props]) => (
+      {sortedOtherProjects.map(([id, props]) => (
         <OtherProjectEntry
           key={id}
           {...props}

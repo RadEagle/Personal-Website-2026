@@ -48,4 +48,19 @@ describe("Other Projects List", () => {
     expect(screen.getByText("Mock Other Project 4")).toBeInTheDocument();
     expect(screen.getByText("Dec 2025 - Jan 2026")).toBeInTheDocument();
   });
+  test("Projects sorted by end date", () => {
+    const textContent: string[] = [];
+    for (const text of screen.getAllByText("Mock Other Project", {
+      exact: false,
+    })) {
+      textContent.push(text.innerHTML);
+    }
+
+    expect(textContent).toEqual([
+      "Mock Other Project 3",
+      "Mock Other Project 2",
+      "Mock Other Project 4",
+      "Mock Other Project 1",
+    ]);
+  });
 });
