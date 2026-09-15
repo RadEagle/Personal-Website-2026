@@ -1,13 +1,15 @@
 {
   "flightboard": {
     "title": "Flightboard Consents Viewer",
+    "description": "Surgical staff review patient consents on a monitor.",
     "organization": "Epic Systems",
-    "tools": ["TypeScript", "React", "SCSS", "C#", "M"],
+    "tools": ["TypeScript", "React", "SCSS", "C#", "SQL", "M"],
     "startDate": "11/8/2023",
     "endDate": "7/17/2024"
   },
   "consults": {
     "title": "Consults AI Agent",
+    "description": "Helps surgeons decide on surgery based on a patient's medical history.",
     "organization": "Epic Systems",
     "tools": ["AI Orchestrator", "C#", "M", "Docker", "Evaluator Agents"],
     "startDate": "8/10/2024",
@@ -15,8 +17,9 @@
   },
   "voicebox": {
     "title": "VoiceBox",
+    "description": "An embedded device that flags confident and authoritative speech.",
     "organization": "UCLA",
-    "tools": ["Python", "Numpy", "Signal Processing"],
+    "tools": ["Python", "NumPy", "Signal Processing"],
     "startDate": "1/20/2023",
     "endDate": "6/10/2023"
   },
@@ -47,12 +50,5 @@
     "tools": ["R", "Docker"],
     "startDate": "5/21/2021",
     "endDate": "10/10/2022"
-  },
-  "cheer": {
-    "title": "CharaCheer",
-    "organization": "Independent",
-    "tools": ["JavaScript", "HTML", "CSS", "PHP", "SQL"],
-    "startDate": "3/1/2021",
-    "endDate": "3/8/2021"
   }
 }
