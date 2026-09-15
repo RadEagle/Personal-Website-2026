@@ -1,5 +1,7 @@
 "use client";
 import { blob } from "../../Library/styles";
+import projectsList from "./projectsList.json";
+import otherProjectsList from "./otherProjectsList.json";
 
 interface ProjectEntryProps {
   title: string;
@@ -47,19 +49,11 @@ const ProjectEntry = (props: ProjectEntryProps) => {
 };
 
 const ProjectsList = () => {
-  const kanjiProps: ProjectEntryProps = {
-    title: "Kanji Complexity Scanner",
-    description:
-      "Are Japanese characters really that scary? Use this tool to find out!",
-    imgSrc: "/kanji.jpeg",
-    imgAlt: "Kanji Project Image",
-    link: "/projects/kanji",
-    date: new Date("9/10/2026"),
-  };
-
   return (
     <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-2">
-      <ProjectEntry {...kanjiProps} />
+      {Object.entries(projectsList).map(([id, props]) => (
+        <ProjectEntry key={id} {...props} date={new Date(props.date)} />
+      ))}
     </div>
   );
 };
@@ -97,18 +91,16 @@ const OtherProjectEntry = (props: OtherProjectEntryProps) => {
 };
 
 const OtherProjectsList = () => {
-  const projectProps: OtherProjectEntryProps = {
-    title: "Flightboard Consents Viewer",
-    organization: "Epic Systems",
-    tools: ["TypeScript", "React", "SCSS", "C#", "M"],
-    startDate: new Date("11/8/2023"),
-    endDate: new Date("7/17/2024"),
-  };
-
   return (
     <div className="flex flex-col gap-y-2">
-      <OtherProjectEntry {...projectProps} />
-      <OtherProjectEntry {...projectProps} />
+      {Object.entries(otherProjectsList).map(([id, props]) => (
+        <OtherProjectEntry
+          key={id}
+          {...props}
+          startDate={new Date(props.startDate)}
+          endDate={new Date(props.endDate)}
+        />
+      ))}
     </div>
   );
 };

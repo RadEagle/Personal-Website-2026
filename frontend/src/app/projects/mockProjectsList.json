@@ -1,0 +1,18 @@
+{
+  "mockProject1": {
+    "title": "Mock Project 1",
+    "description": "Mock description 1",
+    "imgSrc": "/mock-image-1.jpeg",
+    "imgAlt": "Mock Project 1 Image",
+    "link": "/projects/mock-project-1",
+    "date": "8-11-2026"
+  },
+  "mockProject2": {
+    "title": "Mock Project 2",
+    "description": "Mock description 2",
+    "imgSrc": "/mock-image-2.jpeg",
+    "imgAlt": "Mock Project 2 Image",
+    "link": "/projects/mock-project-2",
+    "date": "9-12-2026"
+  }
+}

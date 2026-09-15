@@ -1,0 +1,9 @@
+{
+  "projectProps": {
+    "title": "Flightboard Consents Viewer",
+    "organization": "Epic Systems",
+    "tools": ["TypeScript", "React", "SCSS", "C#", "M"],
+    "startDate": "11/8/2023",
+    "endDate": "7/17/2024"
+  }
+}

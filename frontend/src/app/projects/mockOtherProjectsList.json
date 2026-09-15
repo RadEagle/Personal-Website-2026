@@ -1,0 +1,30 @@
+{
+  "mockOtherProject1": {
+    "title": "Mock Other Project 1",
+    "organization": "Mock description 1",
+    "tools": ["Python", "CSS"],
+    "startDate": "7/11/25",
+    "endDate": "8/4/25"
+  },
+  "mockOtherProject2": {
+    "title": "Mock Other Project 2",
+    "organization": "Mock description 2",
+    "tools": ["Python", "CSS"],
+    "startDate": "4/1/26",
+    "endDate": "4/25/26"
+  },
+  "mockOtherProject3": {
+    "title": "Mock Other Project 3",
+    "organization": "Mock description 3",
+    "tools": ["Python", "CSS"],
+    "startDate": "6/1/26",
+    "endDate": ""
+  },
+  "mockOtherProject4": {
+    "title": "Mock Other Project 4",
+    "organization": "Mock description 4",
+    "tools": ["Python", "CSS"],
+    "startDate": "12/16/25",
+    "endDate": "1/30/26"
+  }
+}
