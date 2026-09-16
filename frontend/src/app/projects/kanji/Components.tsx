@@ -1,10 +1,20 @@
 "use client";
+import { useState } from "react"
 import { blob } from "../../../Library/styles";
 import { exampleKanji, modes } from "./data";
 
 interface TwoElementProps {
   left: React.ReactNode;
   right: React.ReactNode;
+}
+
+interface ModeProps {
+    selectedMode: string
+    onModeChange: (selectedMode: string) => void
+}
+
+interface ModeDependentProps {
+    mode: string
 }
 
 const Title = () => {
@@ -28,7 +38,7 @@ const TwoElement = (props: TwoElementProps) => {
 
 const Introduction = () => {
   const kanjiExamples = exampleKanji.map((example) => (
-    <span className="bg-white/20 rounded-lg px-2 py-1 hover:scale-101 hover:cursor-pointer hover:opacity-70 duration-200 ease-in-out">
+    <span key={example} className="bg-white/20 rounded-lg px-2 py-1 hover:scale-101 hover:cursor-pointer hover:opacity-70 duration-200 ease-in-out">
       {example}
     </span>
   ));
@@ -50,11 +60,13 @@ const Introduction = () => {
   );
 };
 
-const Algorithm = () => {
+const Algorithm = ({mode}: ModeDependentProps) => {
   return (
     <div className={`${blob} text-start text-white content-start`}>
       <h2 className="text-xl font-bold">Algorithm</h2>
-      <div className="alg" id="jlpt">
+      {
+        mode === "JLPT" ? 
+        <div className="alg" id="jlpt">
         <p>
           The scoring is based on the level each kanji appears in the Japanese
           Language Proficiency Test (JLPT). The complexity number is shown
@@ -66,10 +78,14 @@ const Algorithm = () => {
           <li className="text-amber-300">JLPT 3 (3)</li>
           <li className="text-orange-300">JLPT 2 (4)</li>
           <li className="text-red-300">JLPT 1 (5)</li>
-          <li className="kanji-9">Hyogai Kanji (6)</li>
+          <li className="text-purple-500">Kanji Beyond JLPT (6)</li>
         </ul>
       </div>
-      <div className="alg" id="grade">
+        : null
+      }
+      {
+        mode === "Joyo" ?
+        <div className="alg" id="grade">
         <p>
           The scoring is based on the grade level each kanji is taught in Japan.
           The complexity number is shown inside the parentheses.
@@ -86,23 +102,19 @@ const Algorithm = () => {
           <li className="kanji-9">Hyogai Kanji (9)</li>
         </ul>
       </div>
-      <p>White characters are not kanji, and have a complexity of 0.</p>
-      <p>
-        Whitespaces and{" "}
-        <span className="kanji-10">
-          <b>Jinmeiyo Kanji</b>
-        </span>{" "}
-        are excluded from evaluation.
-      </p>
+      : null
+      }
+      
+      <p>White characters and whitespaces are not kanji, and are excluded from calculation.</p>
     </div>
   );
 };
 
-const Mode = () => {
+const Mode = (props: ModeProps) => {
   const modeChips = modes.map((mode) => (
-    <span className="bg-white/20 rounded-lg px-2 py-1 hover:scale-101 hover:cursor-pointer hover:opacity-70 duration-200 ease-in-out">
+    <button key={mode} onClick={() => props.onModeChange(mode)} className={`bg-white/20 rounded-lg px-2 py-1 hover:scale-101 hover:cursor-pointer hover:opacity-70 duration-200 ease-in-out ${props.selectedMode === mode ? "text-teal-400 border-teal-400 font-semibold border-2" : null}`}>
       {mode}
-    </span>
+    </button>
   ));
 
   return (
@@ -115,7 +127,7 @@ const Mode = () => {
   );
 };
 
-const Complexity = () => {
+const Complexity = ({mode}: ModeDependentProps) => {
   return (
     <div className={`${blob} text-white text-start content-start`}>
       <div className="flex gap-2">
@@ -140,7 +152,7 @@ const KanjiInput = () => {
   );
 };
 
-const KanjiResult = () => {
+const KanjiResult = ({mode}: ModeDependentProps) => {
   return (
     <div className={`${blob} text-start text-white content-start pt-3`}>
       <h3 className="text-lg font-semibold">Result</h3>
@@ -194,12 +206,18 @@ const Feedback = () => {
 };
 
 const KanjiProject = () => {
+  const [mode, setMode] = useState("Default");
+
+  function handleModeChange(selectedMode: string) {
+    setMode(selectedMode);
+  }
+
   return (
     <div className="m-2 flex flex-col gap-2">
       <Title />
-      <TwoElement left={<Introduction />} right={<Algorithm />} />
-      <TwoElement left={<Mode />} right={<Complexity />} />
-      <TwoElement left={<KanjiInput />} right={<KanjiResult />} />
+      <TwoElement left={<Introduction />} right={<Algorithm mode={mode} />} />
+      <TwoElement left={<Mode selectedMode={mode} onModeChange={handleModeChange}/>} right={<Complexity mode={mode} />} />
+      <TwoElement left={<KanjiInput />} right={<KanjiResult mode={mode} />} />
       <TwoElement left={<Sources />} right={<Feedback />} />
     </div>
   );
