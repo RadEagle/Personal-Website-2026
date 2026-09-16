@@ -1,5 +1,6 @@
 "use client";
 import { blob } from "../../../Library/styles";
+import { exampleKanji, modes } from "./data";
 
 interface TwoElementProps {
   left: React.ReactNode;
@@ -8,7 +9,7 @@ interface TwoElementProps {
 
 const Title = () => {
   return (
-    <div className="m-2 flex flex-col gap-2">
+    <div className={blob}>
       <h1 className="text-white text-2xl font-bold">
         Kanji Complexity Scanner
       </h1>
@@ -26,6 +27,12 @@ const TwoElement = (props: TwoElementProps) => {
 };
 
 const Introduction = () => {
+  const kanjiExamples = exampleKanji.map((example) => (
+    <span className="bg-white/20 rounded-lg px-2 py-1 hover:scale-101 hover:cursor-pointer hover:opacity-70 duration-200 ease-in-out">
+      {example}
+    </span>
+  ));
+
   return (
     <div className={`${blob} text-start text-white content-start`}>
       <h2 className="text-xl font-bold">Welcome!</h2>
@@ -38,17 +45,7 @@ const Introduction = () => {
         examples:
       </p>
       {/* Turn these into chips maybe? Click to copy essentially */}
-      <ul className="grid gap-1 justify-between list-disc list-inside">
-        <li>孫悟空</li>
-        <li>ジョジョの奇妙な冒険</li>
-        <li>四宮かぐや</li>
-        <li>千本桜</li>
-        <li>神風</li>
-        <li>麒麟</li>
-        <li>狐</li>
-        <li>胡桃</li>
-        <li>東京</li>
-      </ul>
+      <div className="flex flex-wrap gap-1">{kanjiExamples}</div>
     </div>
   );
 };
@@ -102,17 +99,28 @@ const Algorithm = () => {
 };
 
 const Mode = () => {
+  const modeChips = modes.map((mode) => (
+    <span className="bg-white/20 rounded-lg px-2 py-1 hover:scale-101 hover:cursor-pointer hover:opacity-70 duration-200 ease-in-out">
+      {mode}
+    </span>
+  ));
+
   return (
     <div className={`${blob} text-start text-white content-start`}>
-      <h2 className="text-xl font-semibold">Mode:</h2>
+      <div className="flex gap-2">
+        <h2 className="text-xl font-semibold">Mode:</h2>
+        {modeChips}
+      </div>
     </div>
   );
 };
 
 const Complexity = () => {
   return (
-    <div className={`${blob} text-white content-start`}>
-      <h2 className="text-xl font-semibold">Complexity:</h2>
+    <div className={`${blob} text-white text-start content-start`}>
+      <div className="flex gap-2">
+        <h2 className="text-xl font-semibold">Complexity:</h2>
+      </div>
     </div>
   );
 };
@@ -121,6 +129,7 @@ const KanjiInput = () => {
   return (
     <div className={`${blob} text-start text-white content-start pt-3`}>
       <h3 className="text-lg font-semibold">Input Kanji Here</h3>
+      {/* Implement a max character limit so page doesn't crash */}
       <textarea
         name="jp-text"
         rows={10}
