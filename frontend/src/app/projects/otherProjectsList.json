@@ -33,7 +33,7 @@
   "yuegui": {
     "title": "Yuegui Discord Bot",
     "organization": "UCLA",
-    "tools": ["JavaScript", "Repl.it"],
+    "tools": ["JavaScript", "Express.js", "Node.js"],
     "startDate": "12/29/2022",
     "endDate": "11/10/2023"
   },
