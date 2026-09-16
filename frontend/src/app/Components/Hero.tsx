@@ -63,7 +63,7 @@ const ProjectBlob = () => {
         id="proj-container"
         className="relative text-center duration-200 ease-in-out hover:scale-102"
       >
-        <a href="kanji">
+        <a href="projects/kanji">
           {/* Upload a 640x400 image here! */}
           <img
             id="proj-img"
