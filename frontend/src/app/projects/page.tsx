@@ -1,5 +1,10 @@
 import { blob } from "../../Library/styles";
+import { type Metadata } from "next"
 import { ProjectsList, OtherProjectsList } from "./Components";
+
+export const metadata: Metadata = {
+  title: "Projects | Jon's Homepage"
+}
 
 const App = () => {
   return (
