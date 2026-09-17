@@ -1,8 +1,8 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { blob } from "../../../Library/styles";
 import { exampleKanji, kanjiAlgorithms, modes } from "./data";
-import {email} from "../../../Library/data"
+import { email } from "../../../Library/data";
 
 interface TwoElementProps {
   left: React.ReactNode;
@@ -19,8 +19,8 @@ interface ModeDependentProps {
 }
 
 interface SourceLinkProps {
-    label: string;
-    link: string;
+  label: string;
+  link: string;
 }
 
 const Title = () => {
@@ -43,13 +43,31 @@ const TwoElement = (props: TwoElementProps) => {
 };
 
 const Introduction = () => {
+  const [showCopied, setShowCopied] = useState("idle");
+  const timeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  async function handleCopyKanji(example: string) {
+    try {
+      setShowCopied("idle");
+      if (timeout.current) {
+        clearTimeout(timeout.current);
+      }
+      await navigator.clipboard.writeText(example);
+      setShowCopied("in");
+      timeout.current = setTimeout(() => setShowCopied("out"), 2000);
+    } catch (e) {}
+  }
+
   const kanjiExamples = exampleKanji.map((example) => (
-    <span
+    <button
       key={example}
       className="bg-white/20 rounded-lg px-2 py-1 hover:scale-101 hover:cursor-pointer hover:opacity-70 duration-200 ease-in-out"
+      onClick={() => {
+        handleCopyKanji(example);
+      }}
     >
       {example}
-    </span>
+    </button>
   ));
 
   return (
@@ -63,8 +81,13 @@ const Introduction = () => {
         As a gentle introduction, copy, paste, and evaluate the following
         examples:
       </p>
-      {/* Turn these into chips maybe? Click to copy essentially */}
       <div className="flex flex-wrap gap-1">{kanjiExamples}</div>
+      <div
+        aria-live="polite"
+        className={`text-xs bg-green-400 rounded-lg p-3 text-center border-green-700 border-2 font-semibold fixed z-10 bottom-2 left-15 ${showCopied === "in" ? "animate-toast-fade-in" : showCopied === "out" ? "animate-toast-fade-out" : "hidden"}`}
+      >
+        Text copied!
+      </div>
     </div>
   );
 };
@@ -76,10 +99,11 @@ const Algorithm = ({ mode }: ModeDependentProps) => {
       <div className="grid">
         {Object.entries(kanjiAlgorithms).map(([key, value]) => (
           <div
+            key={key}
             className={`flex flex-col gap-3 col-start-1 row-start-1 ${mode === key ? "" : "invisible"}`}
           >
             <p>{value.intro}</p>
-            <div key={key} className={`flex flex-wrap gap-1`}>
+            <div className={`flex flex-wrap gap-1`}>
               {value.legend.map((level) => (
                 <span
                   key={level.label}
@@ -153,28 +177,34 @@ const KanjiResult = ({ mode }: ModeDependentProps) => {
 };
 
 const SourceLink = (props: SourceLinkProps) => {
-    return (
-        <p>
-            {props.label}:{" "}
-            <a
-          href={props.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-sky-400"
-        >
-          {props.link}
-        </a>
-        </p>
-    )
-}
+  return (
+    <p>
+      {props.label}:{" "}
+      <a
+        href={props.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-sky-400"
+      >
+        {props.link}
+      </a>
+    </p>
+  );
+};
 
 const Sources = () => {
   return (
     <div className={`${blob} text-white text-start content-start`}>
       <h2 className="text-xl font-bold">Sources</h2>
       <div>
-        <SourceLink label="Grade Kanji" link="https://www.kanji-link.com/en/kanji/grade/" />
-        <SourceLink label="JLPT Kanji" link="https://www.kanshudo.com/collections/jlpt_kanji" />
+        <SourceLink
+          label="Grade Kanji"
+          link="https://www.kanji-link.com/en/kanji/grade/"
+        />
+        <SourceLink
+          label="JLPT Kanji"
+          link="https://www.kanshudo.com/collections/jlpt_kanji"
+        />
       </div>
     </div>
   );

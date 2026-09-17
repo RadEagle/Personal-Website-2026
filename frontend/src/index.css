@@ -11,6 +11,9 @@
 @theme {
   --animate-open-menu: open-menu 0.3s ease-out;
   --animate-fade-in: fade-in 0.75s ease-out;
+  --animate-toast-fade-in: toast-fade-in 0.25s ease-out;
+  --animate-toast-fade-out: toast-fade-out 0.25s ease-in-out forwards;
+
   --color-orangered: #ff6532;
   --color-acid: #cdf218;
   --color-yellowgreen: #5fe500;
@@ -33,6 +36,28 @@
     100% {
       opacity: 1;
       transform: translateY(0%);
+    }
+  }
+
+  @keyframes toast-fade-in {
+    0% {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0%);
+    }
+  }
+
+  @keyframes toast-fade-out {
+    0% {
+      opacity: 1;
+      transform: translateY(0%);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(100%);
     }
   }
 }
