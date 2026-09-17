@@ -14,6 +14,7 @@ export const exampleKanji = [
   "東京",
 ];
 
+// #region Algorithm
 interface AlgorithmEntry {
   intro: string;
   legend: LegendItem[];
@@ -250,3 +251,7 @@ export const kanjiAlgorithms: Record<string, AlgorithmEntry> = {
     ],
   },
 };
+
+// #endregion
+
+export const maxInputLength: number = 1000;

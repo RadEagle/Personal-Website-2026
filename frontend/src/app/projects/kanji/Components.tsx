@@ -1,9 +1,10 @@
 "use client";
 import { useState, useRef } from "react";
 import { blob } from "../../../Library/styles";
-import { exampleKanji, kanjiAlgorithms, modes } from "./data";
+import { exampleKanji, kanjiAlgorithms, maxInputLength, modes } from "./data";
 import { email } from "../../../Library/data";
 
+// #region interfaces
 interface TwoElementProps {
   left: React.ReactNode;
   right: React.ReactNode;
@@ -22,6 +23,8 @@ interface SourceLinkProps {
   label: string;
   link: string;
 }
+
+// #endregion
 
 const Title = () => {
   return (
@@ -154,16 +157,24 @@ const Complexity = ({ mode }: ModeDependentProps) => {
 };
 
 const KanjiInput = () => {
+  const [kanjiInput, setKanjiInput] = useState("");
+
   return (
     <div className={`${blob} text-start text-white content-start pt-3`}>
       <h3 className="text-lg font-semibold">Input Kanji Here</h3>
-      {/* Implement a max character limit so page doesn't crash */}
       <textarea
-        name="jp-text"
+        name="kanjiInput"
+        value={kanjiInput}
+        onChange={(e) => setKanjiInput(e.target.value)}
         rows={10}
+        maxLength={maxInputLength}
         placeholder="Paste kanji here..."
+        aria-describedby="kanjiInputCounter"
         className="text-black bg-white/90 rounded-lg text-lg px-2 py-1"
       ></textarea>
+      <p id="kanjiInputCounter" className="text-xs/1 text-end">
+        {kanjiInput.length}/{maxInputLength}
+      </p>
     </div>
   );
 };
