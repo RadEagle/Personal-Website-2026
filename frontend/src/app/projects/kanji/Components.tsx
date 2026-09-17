@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { blob } from "../../../Library/styles";
 import { exampleKanji, kanjiAlgorithms, modes } from "./data";
+import {email} from "../../../Library/data"
 
 interface TwoElementProps {
   left: React.ReactNode;
@@ -17,6 +18,11 @@ interface ModeDependentProps {
   mode: string;
 }
 
+interface SourceLinkProps {
+    label: string;
+    link: string;
+}
+
 const Title = () => {
   return (
     <div className={blob}>
@@ -29,7 +35,7 @@ const Title = () => {
 
 const TwoElement = (props: TwoElementProps) => {
   return (
-    <div className="grid md:grid-cols-2 gap-2">
+    <div className="grid md:grid-cols-2 gap-2 text-sm">
       {props.left}
       {props.right}
     </div>
@@ -72,7 +78,7 @@ const Algorithm = ({ mode }: ModeDependentProps) => {
           <div
             className={`flex flex-col gap-3 col-start-1 row-start-1 ${mode === key ? "" : "invisible"}`}
           >
-            <p>{kanjiAlgorithms[mode].intro}</p>
+            <p>{value.intro}</p>
             <div key={key} className={`flex flex-wrap gap-1`}>
               {value.legend.map((level) => (
                 <span
@@ -146,44 +152,42 @@ const KanjiResult = ({ mode }: ModeDependentProps) => {
   );
 };
 
+const SourceLink = (props: SourceLinkProps) => {
+    return (
+        <p>
+            {props.label}:{" "}
+            <a
+          href={props.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-sky-400"
+        >
+          {props.link}
+        </a>
+        </p>
+    )
+}
+
 const Sources = () => {
   return (
-    <div className={`${blob} text-start text-white content-start`}>
+    <div className={`${blob} text-white text-start content-start`}>
       <h2 className="text-xl font-bold">Sources</h2>
-      <p>
-        Grade Kanji:{" "}
-        <a
-          href="https://www.kanji-link.com/en/kanji/grade/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-sky-400"
-        >
-          https://www.kanji-link.com/en/kanji/grade/
-        </a>
-      </p>
-      <p>
-        JLPT Kanji:{" "}
-        <a
-          href="https://www.kanshudo.com/collections/jlpt_kanji"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-sky-400"
-        >
-          https://www.kanshudo.com/collections/jlpt_kanji
-        </a>
-      </p>
+      <div>
+        <SourceLink label="Grade Kanji" link="https://www.kanji-link.com/en/kanji/grade/" />
+        <SourceLink label="JLPT Kanji" link="https://www.kanshudo.com/collections/jlpt_kanji" />
+      </div>
     </div>
   );
 };
 
 const Feedback = () => {
   return (
-    <div className={`${blob} text-start text-white content-start`}>
+    <div className={`${blob} text-white text-start content-start`}>
       <h2 className="text-xl font-bold">Feedback</h2>
       <p>
         Please contact{" "}
-        <a href="mailto:jonathanqchau@gmail.com" className="text-sky-400">
-          jonathanqchau@gmail.com
+        <a href={`mailto:${email}`} className="text-sky-400">
+          {email}
         </a>{" "}
         for any questions and suggestions.
       </p>
