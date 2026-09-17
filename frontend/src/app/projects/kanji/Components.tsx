@@ -1,7 +1,7 @@
 "use client";
-import { useState } from "react"
+import { useState } from "react";
 import { blob } from "../../../Library/styles";
-import { exampleKanji, modes } from "./data";
+import { exampleKanji, kanjiAlgorithms, modes } from "./data";
 
 interface TwoElementProps {
   left: React.ReactNode;
@@ -9,12 +9,12 @@ interface TwoElementProps {
 }
 
 interface ModeProps {
-    selectedMode: string
-    onModeChange: (selectedMode: string) => void
+  selectedMode: string;
+  onModeChange: (selectedMode: string) => void;
 }
 
 interface ModeDependentProps {
-    mode: string
+  mode: string;
 }
 
 const Title = () => {
@@ -38,7 +38,10 @@ const TwoElement = (props: TwoElementProps) => {
 
 const Introduction = () => {
   const kanjiExamples = exampleKanji.map((example) => (
-    <span key={example} className="bg-white/20 rounded-lg px-2 py-1 hover:scale-101 hover:cursor-pointer hover:opacity-70 duration-200 ease-in-out">
+    <span
+      key={example}
+      className="bg-white/20 rounded-lg px-2 py-1 hover:scale-101 hover:cursor-pointer hover:opacity-70 duration-200 ease-in-out"
+    >
       {example}
     </span>
   ));
@@ -60,66 +63,49 @@ const Introduction = () => {
   );
 };
 
-const Algorithm = ({mode}: ModeDependentProps) => {
+const Algorithm = ({ mode }: ModeDependentProps) => {
   return (
     <div className={`${blob} text-start text-white content-start`}>
       <h2 className="text-xl font-bold">Algorithm</h2>
-      {
-        mode === "JLPT" ? 
-        <div className="alg" id="jlpt">
-        <p>
-          The scoring is based on the level each kanji appears in the Japanese
-          Language Proficiency Test (JLPT). The complexity number is shown
-          inside the parentheses.
-        </p>
-        <ul className="tutorial-table" id="grade-levels">
-          <li className="text-cyan-300">JLPT 5 (1)</li>
-          <li className="text-lime-300">JLPT 4 (2)</li>
-          <li className="text-amber-300">JLPT 3 (3)</li>
-          <li className="text-orange-300">JLPT 2 (4)</li>
-          <li className="text-red-300">JLPT 1 (5)</li>
-          <li className="text-purple-500">Kanji Beyond JLPT (6)</li>
-        </ul>
+      <div className="grid">
+        {Object.entries(kanjiAlgorithms).map(([key, value]) => (
+          <div
+            className={`flex flex-col gap-3 col-start-1 row-start-1 ${mode === key ? "" : "invisible"}`}
+          >
+            <p>{kanjiAlgorithms[mode].intro}</p>
+            <div key={key} className={`flex flex-wrap gap-1`}>
+              {value.legend.map((level) => (
+                <span
+                  key={level.label}
+                  className={`bg-white/20 ${level.textClass} border ${level.borderClass} rounded-lg px-2 py-1 font-semibold`}
+                >{`${level.label} (${level.complexity})`}</span>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
-        : null
-      }
-      {
-        mode === "Joyo" ?
-        <div className="alg" id="grade">
-        <p>
-          The scoring is based on the grade level each kanji is taught in Japan.
-          The complexity number is shown inside the parentheses.
-        </p>
-        <ul className="tutorial-table" id="grade-levels">
-          <li className="kanji-1">1st Grade (1)</li>
-          <li className="kanji-2">2nd Grade (2)</li>
-          <li className="kanji-3">3rd Grade (3)</li>
-          <li className="kanji-4">4th Grade (4)</li>
-          <li className="kanji-5">5th Grade (5)</li>
-          <li className="kanji-6">6th Grade (6)</li>
-          <li className="kanji-7">Junior High (7)</li>
-          <li className="kanji-8">High School (8)</li>
-          <li className="kanji-9">Hyogai Kanji (9)</li>
-        </ul>
-      </div>
-      : null
-      }
-      
-      <p>White characters and whitespaces are not kanji, and are excluded from calculation.</p>
+      <p>
+        White characters and whitespaces are not kanji, and are excluded from
+        calculation.
+      </p>
     </div>
   );
 };
 
 const Mode = (props: ModeProps) => {
   const modeChips = modes.map((mode) => (
-    <button key={mode} onClick={() => props.onModeChange(mode)} className={`bg-white/20 rounded-lg px-2 py-1 hover:scale-101 hover:cursor-pointer hover:opacity-70 duration-200 ease-in-out ${props.selectedMode === mode ? "text-teal-400 border-teal-400 font-semibold border-2" : null}`}>
+    <button
+      key={mode}
+      onClick={() => props.onModeChange(mode)}
+      className={`bg-white/20 text-sm rounded-lg px-2 py-1 border-2 hover:scale-101 hover:cursor-pointer hover:opacity-70 duration-200 ease-in-out ${props.selectedMode === mode ? "text-teal-400 border-teal-400 font-semibold" : null}`}
+    >
       {mode}
     </button>
   ));
 
   return (
-    <div className={`${blob} text-start text-white content-start`}>
-      <div className="flex gap-2">
+    <div className={`${blob} text-start text-white`}>
+      <div className="flex gap-2 items-center">
         <h2 className="text-xl font-semibold">Mode:</h2>
         {modeChips}
       </div>
@@ -127,10 +113,10 @@ const Mode = (props: ModeProps) => {
   );
 };
 
-const Complexity = ({mode}: ModeDependentProps) => {
+const Complexity = ({ mode }: ModeDependentProps) => {
   return (
-    <div className={`${blob} text-white text-start content-start`}>
-      <div className="flex gap-2">
+    <div className={`${blob} text-white text-start`}>
+      <div className="flex gap-2 items-center">
         <h2 className="text-xl font-semibold">Complexity:</h2>
       </div>
     </div>
@@ -152,7 +138,7 @@ const KanjiInput = () => {
   );
 };
 
-const KanjiResult = ({mode}: ModeDependentProps) => {
+const KanjiResult = ({ mode }: ModeDependentProps) => {
   return (
     <div className={`${blob} text-start text-white content-start pt-3`}>
       <h3 className="text-lg font-semibold">Result</h3>
@@ -216,7 +202,10 @@ const KanjiProject = () => {
     <div className="m-2 flex flex-col gap-2">
       <Title />
       <TwoElement left={<Introduction />} right={<Algorithm mode={mode} />} />
-      <TwoElement left={<Mode selectedMode={mode} onModeChange={handleModeChange}/>} right={<Complexity mode={mode} />} />
+      <TwoElement
+        left={<Mode selectedMode={mode} onModeChange={handleModeChange} />}
+        right={<Complexity mode={mode} />}
+      />
       <TwoElement left={<KanjiInput />} right={<KanjiResult mode={mode} />} />
       <TwoElement left={<Sources />} right={<Feedback />} />
     </div>
