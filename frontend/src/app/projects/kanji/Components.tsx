@@ -103,7 +103,7 @@ const Mode = (props: ModeProps) => {
     <button
       key={mode}
       onClick={() => props.onModeChange(mode)}
-      className={`bg-white/20 text-sm rounded-lg px-2 py-1 border-2 hover:scale-101 hover:cursor-pointer hover:opacity-70 duration-200 ease-in-out ${props.selectedMode === mode ? "text-teal-400 border-teal-400 font-semibold" : null}`}
+      className={`bg-white/20 text-xs md:text-sm rounded-lg px-2 py-1 border-2 hover:scale-101 hover:cursor-pointer hover:opacity-70 duration-200 ease-in-out ${props.selectedMode === mode ? "text-teal-400 border-teal-400 font-semibold" : null}`}
     >
       {mode}
     </button>
@@ -111,8 +111,8 @@ const Mode = (props: ModeProps) => {
 
   return (
     <div className={`${blob} text-start text-white`}>
-      <div className="flex gap-2 items-center">
-        <h2 className="text-xl font-semibold">Mode:</h2>
+      <div className="flex justify-between lg:justify-start lg:gap-2 items-center">
+        <h2 className="text-base md:text-xl font-semibold">Mode:</h2>
         {modeChips}
       </div>
     </div>
