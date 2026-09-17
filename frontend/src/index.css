@@ -11,9 +11,10 @@
 @theme {
   --animate-open-menu: open-menu 0.3s ease-out;
   --animate-fade-in: fade-in 0.75s ease-out;
-  --color-papayawhip-light: #fef4e4;
-  --color-papayawhip: #ffefd5;
-  --color-papayawhip-dark: #fee5bc;
+  --color-orangered: #ff6532;
+  --color-acid: #cdf218;
+  --color-yellowgreen: #5fe500;
+  --color-aquamarine: #5deac7;
 
   @keyframes open-menu {
     0% {
