@@ -43,7 +43,7 @@ const LeftFooter = () => {
       <p>Access my previous work here:</p>
       <ul>
         <FooterButton
-          href="projects"
+          href="/projects"
           label="Coming soon! View past work here."
         />
       </ul>
