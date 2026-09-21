@@ -4,7 +4,6 @@ import userEvent from "@testing-library/user-event";
 import { KanjiProject } from "./Components";
 
 vi.mock("./data", () => ({
-  modes: ["delete", "to", "prevent", "drift"],
   exampleKanji: ["武", "川", "絶対"],
   kanjiAlgorithms: {
     mode1: {
@@ -72,30 +71,30 @@ describe("Kanji Component Data", () => {
 
   // Introduction
   test("Kanji tutorial list is parameterized", () => {
-    expect(screen.getByText("武")).toBeInTheDocument()
-    expect(screen.getByText("川")).toBeInTheDocument()
-    expect(screen.getByText("絶対")).toBeInTheDocument()
+    expect(screen.getByText("武")).toBeInTheDocument();
+    expect(screen.getByText("川")).toBeInTheDocument();
+    expect(screen.getByText("絶対")).toBeInTheDocument();
   });
 
   // Mode
   test("Mode labels are parameterized", () => {
-    expect(screen.getByText("mode1")).toBeInTheDocument()
-    expect(screen.getByText("mode2")).toBeInTheDocument()
+    expect(screen.getByRole("button", { name: "mode1" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "mode2" })).toBeInTheDocument();
   });
 
   // Sources
   test("Sources list is parameterized", () => {
-    const link1 = screen.getByText("www.mockexample1.us")
-    const link2 = screen.getByText("www.mockexample2.us/")
+    const link1 = screen.getByText("www.mockexample1.us");
+    const link2 = screen.getByText("www.mockexample2.us/");
 
     expect(screen.getByText("Label 1::")).toBeInTheDocument();
     expect(screen.getByText("Label 2:")).toBeInTheDocument();
 
-    expect(link1).toBeInTheDocument()
-    expect(link1).toHaveAttribute("href", "www.mockexample1.us")
+    expect(link1).toBeInTheDocument();
+    expect(link1).toHaveAttribute("href", "www.mockexample1.us");
 
-    expect(link2).toBeInTheDocument()
-    expect(link2).toHaveAttribute("href", "www.mockexample2.us/")
+    expect(link2).toBeInTheDocument();
+    expect(link2).toHaveAttribute("href", "www.mockexample2.us/");
   });
 
   // Feedback
@@ -116,41 +115,63 @@ describe("Kanji Component UI", () => {
 
   // Introduction
   test("Kanji can be copied and pasted into Kanji input", async () => {
-    // copy behavior
-    const spy = vi.spyOn(navigator.clipboard, "writeText")
+    const user = userEvent.setup();
+    const spy = vi.spyOn(navigator.clipboard, "writeText");
 
-    const user = userEvent.setup()
-    await user.click(screen.getByRole("button", {name: "武"}))
+    await user.click(screen.getByRole("button", { name: "武" }));
+    spy.mockResolvedValue(undefined);
 
-    expect(spy).toHaveBeenCalledExactlyOnceWith("武")
+    expect(spy).toHaveBeenCalledExactlyOnceWith("武");
 
-    expect(screen.getByText(/text copied!/s)).toBeVisible()
-
-    // paste behavior
-    await user.click(screen.getByRole("textbox", {name: /kanji input/s}))
-    await user.paste("武")
+    expect(screen.getByText(/text copied!/i)).not.toHaveClass("hidden");
+    expect(screen.getByText(/text copied!/i)).toHaveClass(
+      "animate-toast-fade-in",
+    );
   });
 
   // Algorithm and Mode
   test("Default mode is the first key", () => {
-    expect(screen.getByText("mode1")).toHaveAttribute("className", "text-teal-400")
-    expect(screen.getByText("mode2")).not.toHaveAttribute("className", "text-teal-400")
+    expect(screen.getByRole("button", { name: "mode1" })).toHaveClass(
+      "text-teal-400",
+    );
+    expect(screen.getByRole("button", { name: "mode2" })).not.toHaveClass(
+      "text-teal-400",
+    );
 
-    expect(screen.getByText("Lv. 1")).toBeVisible()
+    expect(screen.getByText(/test intro 1/).parentElement).not.toHaveClass(
+      "invisible",
+    );
+    expect(screen.getByText(/test intro 2/).parentElement).toHaveClass(
+      "invisible",
+    );
   });
 
   test("Mode 2 shows mode 2 levels", async () => {
-    const user = userEvent.setup()
-    const mode2 = screen.getByText("mode2")
-    await user.click(mode2)
+    const user = userEvent.setup();
+    const mode2 = screen.getByRole("button", { name: "mode2" });
+    await user.click(mode2);
 
-    expect(screen.getByText("mode1")).not.toHaveAttribute("className", "text-teal-400")
-    expect(mode2).toHaveAttribute("className", "text-teal-400")
+    expect(screen.getByRole("button", { name: "mode1" })).not.toHaveClass(
+      "text-teal-400",
+    );
+    expect(mode2).toHaveClass("text-teal-400");
 
-    expect(screen.getByText("Lv. 1")).not.toBeVisible()
-    expect(screen.getByText("5th Dan")).toBeVisible()
+    expect(screen.getByText(/test intro 1/).parentElement).toHaveClass(
+      "invisible",
+    );
+    expect(screen.getByText(/test intro 2/).parentElement).not.toHaveClass(
+      "invisible",
+    );
   });
 
   // Complexity, Input, and Result
+  test("Pasting into the textbox works", async () => {
+    const user = userEvent.setup();
+    const kanjiInput = screen.getByRole("textbox", { name: /kanji input/i });
+    await user.click(kanjiInput);
+    await user.paste("武");
+    expect(kanjiInput).toHaveValue("武");
+  });
+
   test("Typing updates complexity and result", () => {});
 });

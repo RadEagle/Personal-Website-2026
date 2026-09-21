@@ -1,7 +1,7 @@
 "use client";
 import { useState, useRef } from "react";
 import { blob } from "../../../Library/styles";
-import { exampleKanji, kanjiAlgorithms, maxInputLength, modes } from "./data";
+import { exampleKanji, kanjiAlgorithms, maxInputLength, sources } from "./data";
 import { email } from "../../../Library/data";
 
 // #region interfaces
@@ -126,7 +126,7 @@ const Algorithm = ({ mode }: ModeDependentProps) => {
 };
 
 const Mode = (props: ModeProps) => {
-  const modeChips = modes.map((mode) => (
+  const modeChips = Object.keys(kanjiAlgorithms).map((mode) => (
     <button
       key={mode}
       onClick={() => props.onModeChange(mode)}
@@ -169,6 +169,7 @@ const KanjiInput = () => {
         rows={10}
         maxLength={maxInputLength}
         placeholder="Paste kanji here..."
+        aria-label="Kanji Input"
         aria-describedby="kanjiInputCounter"
         className="text-black bg-white/90 rounded-lg text-lg px-2 py-1"
       ></textarea>
@@ -208,14 +209,13 @@ const Sources = () => {
     <div className={`${blob} text-white text-start content-start`}>
       <h2 className="text-xl font-bold">Sources</h2>
       <div>
-        <SourceLink
-          label="Grade Kanji"
-          link="https://www.kanji-link.com/en/kanji/grade/"
-        />
-        <SourceLink
-          label="JLPT Kanji"
-          link="https://www.kanshudo.com/collections/jlpt_kanji"
-        />
+        {sources.map((source) => (
+          <SourceLink
+            key={source.label}
+            label={source.label}
+            link={source.link}
+          />
+        ))}
       </div>
     </div>
   );
@@ -237,7 +237,7 @@ const Feedback = () => {
 };
 
 const KanjiProject = () => {
-  const [mode, setMode] = useState("Default");
+  const [mode, setMode] = useState(Object.keys(kanjiAlgorithms)[0]);
 
   function handleModeChange(selectedMode: string) {
     setMode(selectedMode);

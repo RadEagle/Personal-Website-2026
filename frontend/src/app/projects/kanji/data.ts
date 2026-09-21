@@ -1,7 +1,5 @@
 // frontend/src/app/projects/kanji/data.ts
 
-export const modes = ["Default", "Joyo", "JLPT", "WaniKani"];
-
 export const exampleKanji = [
   "孫悟空",
   "ジョジョの奇妙な冒険",
@@ -255,3 +253,19 @@ export const kanjiAlgorithms: Record<string, AlgorithmEntry> = {
 // #endregion
 
 export const maxInputLength: number = 1000;
+
+interface Source {
+  label: string;
+  link: string;
+}
+
+export const sources: Source[] = [
+  {
+    label: "Grade Kanji",
+    link: "https://www.kanji-link.com/en/kanji/grade/",
+  },
+  {
+    label: "JLPT Kanji",
+    link: "https://www.kanshudo.com/collections/jlpt_kanji",
+  },
+];
