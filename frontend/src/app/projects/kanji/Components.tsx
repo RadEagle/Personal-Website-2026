@@ -1,8 +1,9 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { blob } from "../../../Library/styles";
 import { exampleKanji, kanjiAlgorithms, maxInputLength, sources } from "./data";
 import { email } from "../../../Library/data";
+import { paintOutput, type PaintedOutput } from "./helpers";
 
 // #region interfaces
 interface TwoElementProps {
@@ -154,10 +155,17 @@ const Mode = (props: ModeProps) => {
 };
 
 const Complexity = (props: ScorerProps) => {
+  const [score, setScore] = useState(0)
+
+  useEffect(() => {
+
+  }, [props.inputText, props.mode])
+
   return (
     <div className={`${blob} text-white text-start`}>
-      <div className="flex gap-2 items-center">
-        <h2 className="text-xl font-semibold">Complexity:</h2>
+      <div className="flex gap-2 items-center text-xl font-semibold">
+        <h2>Complexity:</h2>
+        {props.inputText ? <p>15</p> : null}
       </div>
     </div>
   );
@@ -166,13 +174,18 @@ const Complexity = (props: ScorerProps) => {
 const KanjiInput = (props: InputProps) => {
   const [kanjiInput, setKanjiInput] = useState("");
 
+  function handleInputChange(input: string) {
+    setKanjiInput(input)
+    props.onInputChange(input)
+  }
+
   return (
     <div className={`${blob} text-start text-white content-start pt-3`}>
       <h3 className="text-lg font-semibold">Input Kanji Here</h3>
       <textarea
         name="kanjiInput"
         value={kanjiInput}
-        onChange={(e) => setKanjiInput(e.target.value)}
+        onChange={(e) => handleInputChange(e.target.value)}
         rows={10}
         maxLength={maxInputLength}
         placeholder="Paste kanji here..."
@@ -188,9 +201,19 @@ const KanjiInput = (props: InputProps) => {
 };
 
 const KanjiResult = (props: ScorerProps) => {
+  const [colorMap, setColorMap] = useState<PaintedOutput[]>([])
+
+  useEffect(() => {
+    setColorMap(paintOutput(props.mode, props.inputText))
+  }, [props.mode, props.inputText])
+
   return (
     <div className={`${blob} text-start text-white content-start pt-3`}>
       <h3 className="text-lg font-semibold">Result</h3>
+      <div aria-label="Kanji Result" className="bg-white/10 rounded-lg text-lg px-2 py-1 overflow-y-auto whitespace-pre-wrap max-h-73">{colorMap.map(({character, textClass}) => (
+        <span className={textClass}>{character}</span>
+      ))}
+      </div>
     </div>
   );
 };
