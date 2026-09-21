@@ -3,29 +3,154 @@ import { beforeEach, describe, expect, test, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { KanjiProject } from "./Components";
 
-describe("Kanji Component", () => {
+vi.mock("./data", () => ({
+  modes: ["delete", "to", "prevent", "drift"],
+  exampleKanji: ["武", "川", "絶対"],
+  kanjiAlgorithms: {
+    mode1: {
+      intro: "test intro 1",
+      legend: [
+        {
+          label: "Lv. 1",
+          complexity: -1,
+          textClass: "text-red-100",
+          textBorder: "border-blue-950",
+        },
+        {
+          label: "Lev 2",
+          complexity: 200,
+          textClass: "text-orange-600",
+          textBorder: "border-green-900",
+        },
+      ],
+    },
+    mode2: {
+      intro: "test intro 2",
+      legend: [
+        {
+          label: "5th Dan",
+          complexity: 5,
+          textClass: "text-lime-500",
+          textBorder: "border-lime-400",
+        },
+        {
+          label: "3rd Dan",
+          complexity: 3,
+          textClass: "text-cyan-200",
+          textBorder: "border-teal-400",
+        },
+      ],
+    },
+  },
+  maxInputLength: 500,
+  sources: [
+    {
+      label: "Label 1:",
+      link: "www.mockexample1.us",
+    },
+    {
+      label: "Label 2",
+      link: "www.mockexample2.us/",
+    },
+  ],
+}));
+
+vi.mock("../../../Library/data", () => ({
+  email: "stungunamotti@example.com",
+}));
+
+Object.assign(navigator, {
+  clipboard: {
+    writeText: () => {},
+  },
+});
+
+describe("Kanji Component Data", () => {
   beforeEach(() => {
     render(<KanjiProject />);
   });
 
   // Introduction
-  test("Kanji tutorial list is parameterized", () => {});
-  test("Kanji can be copied and pasted into Kanji input", () => {});
+  test("Kanji tutorial list is parameterized", () => {
+    expect(screen.getByText("武")).toBeInTheDocument()
+    expect(screen.getByText("川")).toBeInTheDocument()
+    expect(screen.getByText("絶対")).toBeInTheDocument()
+  });
+
+  // Mode
+  test("Mode labels are parameterized", () => {
+    expect(screen.getByText("mode1")).toBeInTheDocument()
+    expect(screen.getByText("mode2")).toBeInTheDocument()
+  });
+
+  // Sources
+  test("Sources list is parameterized", () => {
+    const link1 = screen.getByText("www.mockexample1.us")
+    const link2 = screen.getByText("www.mockexample2.us/")
+
+    expect(screen.getByText("Label 1::")).toBeInTheDocument();
+    expect(screen.getByText("Label 2:")).toBeInTheDocument();
+
+    expect(link1).toBeInTheDocument()
+    expect(link1).toHaveAttribute("href", "www.mockexample1.us")
+
+    expect(link2).toBeInTheDocument()
+    expect(link2).toHaveAttribute("href", "www.mockexample2.us/")
+  });
+
+  // Feedback
+  test("Email works and is parameterized", () => {
+    const email = screen.getByRole("link", {
+      name: "stungunamotti@example.com",
+    });
+
+    expect(email).toBeInTheDocument();
+    expect(email).toHaveAttribute("href", "mailto:stungunamotti@example.com");
+  });
+});
+
+describe("Kanji Component UI", () => {
+  beforeEach(() => {
+    render(<KanjiProject />);
+  });
+
+  // Introduction
+  test("Kanji can be copied and pasted into Kanji input", async () => {
+    // copy behavior
+    const spy = vi.spyOn(navigator.clipboard, "writeText")
+
+    const user = userEvent.setup()
+    await user.click(screen.getByRole("button", {name: "武"}))
+
+    expect(spy).toHaveBeenCalledExactlyOnceWith("武")
+
+    expect(screen.getByText(/text copied!/s)).toBeVisible()
+
+    // paste behavior
+    await user.click(screen.getByRole("textbox", {name: /kanji input/s}))
+    await user.paste("武")
+  });
 
   // Algorithm and Mode
-  test("Default mode shows user's assigned levels", () => {});
-  test("Joyo mode shows joyo levels", () => {});
-  test("JLPT mode shows JLPT levels", () => {});
-  test("WaniKani mode shows WK levels", () => {});
+  test("Default mode is the first key", () => {
+    expect(screen.getByText("mode1")).toHaveAttribute("className", "text-teal-400")
+    expect(screen.getByText("mode2")).not.toHaveAttribute("className", "text-teal-400")
+
+    expect(screen.getByText("Lv. 1")).toBeVisible()
+  });
+
+  test("Mode 2 shows mode 2 levels", async () => {
+    const user = userEvent.setup()
+    const mode2 = screen.getByText("mode2")
+    await user.click(mode2)
+
+    expect(screen.getByText("mode1")).not.toHaveAttribute("className", "text-teal-400")
+    expect(mode2).toHaveAttribute("className", "text-teal-400")
+
+    expect(screen.getByText("Lv. 1")).not.toBeVisible()
+    expect(screen.getByText("5th Dan")).toBeVisible()
+  });
 
   // Complexity, Input, and Result
   test("Typing updates complexity and result", () => {});
-
-  // Sources
-  test("Sources list is parameterized", () => {});
-
-  // Feedback
-  test("Email works and is parameterized", () => {});
 });
-
-describe("Kanji Scanner", () => {});
