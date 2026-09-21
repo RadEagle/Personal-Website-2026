@@ -268,4 +268,8 @@ export const sources: Source[] = [
     label: "JLPT Kanji",
     link: "https://www.kanshudo.com/collections/jlpt_kanji",
   },
+  {
+    label: "Wanikani",
+    link: "https://www.wanikani.com/kanji",
+  },
 ];
