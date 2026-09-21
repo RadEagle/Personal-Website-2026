@@ -10,13 +10,20 @@ interface TwoElementProps {
   right: React.ReactNode;
 }
 
-interface ModeProps {
-  selectedMode: string;
+interface ModeDependentProps {
+  mode: string;
+}
+
+interface ModeProps extends ModeDependentProps {
   onModeChange: (selectedMode: string) => void;
 }
 
-interface ModeDependentProps {
-  mode: string;
+interface ScorerProps extends ModeDependentProps {
+  inputText: string;
+}
+
+interface InputProps {
+  onInputChange: (input: string) => void;
 }
 
 interface SourceLinkProps {
@@ -130,7 +137,7 @@ const Mode = (props: ModeProps) => {
     <button
       key={mode}
       onClick={() => props.onModeChange(mode)}
-      className={`bg-white/20 text-xs md:text-sm rounded-lg px-2 py-1 border-2 hover:scale-101 hover:cursor-pointer hover:opacity-70 duration-200 ease-in-out ${props.selectedMode === mode ? "text-teal-400 border-teal-400 font-semibold" : null}`}
+      className={`bg-white/20 text-xs md:text-sm rounded-lg px-2 py-1 border-2 hover:scale-101 hover:cursor-pointer hover:opacity-70 duration-200 ease-in-out ${props.mode === mode ? "text-teal-400 border-teal-400 font-semibold" : null}`}
     >
       {mode}
     </button>
@@ -146,7 +153,7 @@ const Mode = (props: ModeProps) => {
   );
 };
 
-const Complexity = ({ mode }: ModeDependentProps) => {
+const Complexity = (props: ScorerProps) => {
   return (
     <div className={`${blob} text-white text-start`}>
       <div className="flex gap-2 items-center">
@@ -156,7 +163,7 @@ const Complexity = ({ mode }: ModeDependentProps) => {
   );
 };
 
-const KanjiInput = () => {
+const KanjiInput = (props: InputProps) => {
   const [kanjiInput, setKanjiInput] = useState("");
 
   return (
@@ -180,7 +187,7 @@ const KanjiInput = () => {
   );
 };
 
-const KanjiResult = ({ mode }: ModeDependentProps) => {
+const KanjiResult = (props: ScorerProps) => {
   return (
     <div className={`${blob} text-start text-white content-start pt-3`}>
       <h3 className="text-lg font-semibold">Result</h3>
@@ -238,9 +245,14 @@ const Feedback = () => {
 
 const KanjiProject = () => {
   const [mode, setMode] = useState(Object.keys(kanjiAlgorithms)[0]);
+  const [inputText, setInputText] = useState("");
 
   function handleModeChange(selectedMode: string) {
     setMode(selectedMode);
+  }
+
+  function handleInputChange(input: string) {
+    setInputText(input);
   }
 
   return (
@@ -248,10 +260,13 @@ const KanjiProject = () => {
       <Title />
       <TwoElement left={<Introduction />} right={<Algorithm mode={mode} />} />
       <TwoElement
-        left={<Mode selectedMode={mode} onModeChange={handleModeChange} />}
-        right={<Complexity mode={mode} />}
+        left={<Mode mode={mode} onModeChange={handleModeChange} />}
+        right={<Complexity mode={mode} inputText={inputText} />}
       />
-      <TwoElement left={<KanjiInput />} right={<KanjiResult mode={mode} />} />
+      <TwoElement
+        left={<KanjiInput onInputChange={handleInputChange} />}
+        right={<KanjiResult mode={mode} inputText={inputText} />}
+      />
       <TwoElement left={<Sources />} right={<Feedback />} />
     </div>
   );
