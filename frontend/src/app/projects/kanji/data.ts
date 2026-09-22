@@ -252,7 +252,7 @@ export const kanjiAlgorithms: Record<string, AlgorithmEntry> = {
 
 // #endregion
 
-export const maxInputLength: number = 1000;
+export const maxInputLength: number = 2500;
 
 interface Source {
   label: string;
