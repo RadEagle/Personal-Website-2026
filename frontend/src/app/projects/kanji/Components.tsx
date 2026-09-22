@@ -111,6 +111,16 @@ const Algorithm = ({ mode }: ModeDependentProps) => {
   return (
     <div className={`${blob} text-start text-white content-start`}>
       <h2 className="text-xl font-bold">Algorithm</h2>
+      <div>
+        <p>
+          <span className="font-semibold">Short inputs</span> - Average the
+          character complexities.
+        </p>
+        <p>
+          <span className="font-semibold">Long inputs</span> - Take highest
+          complexity that is frequent and substantial.
+        </p>
+      </div>
       <div className="grid">
         {Object.entries(kanjiAlgorithms).map(([key, value]) => (
           <div
