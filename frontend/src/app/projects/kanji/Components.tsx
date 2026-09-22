@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import { blob } from "../../../Library/styles";
 import { exampleKanji, kanjiAlgorithms, maxInputLength, sources } from "./data";
 import { email } from "../../../Library/data";
-import { paintOutput, type PaintedOutput } from "./helpers";
+import { calculateComplexity, paintOutput, type PaintedOutput } from "./helpers";
 
 // #region interfaces
 interface TwoElementProps {
@@ -158,14 +158,14 @@ const Complexity = (props: ScorerProps) => {
   const [score, setScore] = useState(0)
 
   useEffect(() => {
-
+    setScore(calculateComplexity(props.inputText, props.mode))
   }, [props.inputText, props.mode])
 
   return (
     <div className={`${blob} text-white text-start`}>
       <div className="flex gap-2 items-center text-xl font-semibold">
         <h2>Complexity:</h2>
-        {props.inputText ? <p>15</p> : null}
+        {props.inputText ? <p>{score}</p> : null}
       </div>
     </div>
   );

@@ -110,7 +110,7 @@ function getAlgorithmIndex(character: string, mode: string): number | null {
 
 function getColor(character: string, mode: string, defaultClass: string = "text-white"): string {
     const index = getAlgorithmIndex(character, mode)
-    if (!index) {
+    if (index === null) {
         return defaultClass;
     }
 
@@ -137,8 +137,22 @@ function paintOutput(input: string, mode: string): PaintedOutput[] {
     return colorMap;
 }
 
-function calculateComplexity(input: string, mode: string): number {
-    return 0
+export function calculateComplexity(input: string, mode: string): number {
+    if (!input) {
+        return 0;
+    }
+
+    let score = 0;
+    let algorithm = getAlgorithm(mode)
+
+    for (const character of input) {
+        const index = getAlgorithmIndex(character, mode)
+        if (index === null) {continue;}
+
+        score += algorithm[index].complexity
+    }
+
+    return score;
 }
 
 export {paintOutput}
