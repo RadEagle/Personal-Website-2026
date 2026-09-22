@@ -3,7 +3,11 @@ import { useState, useRef, useEffect } from "react";
 import { blob } from "../../../Library/styles";
 import { exampleKanji, kanjiAlgorithms, maxInputLength, sources } from "./data";
 import { email } from "../../../Library/data";
-import { calculateComplexity, paintOutput, type PaintedOutput } from "./helpers";
+import {
+  calculateComplexity,
+  paintOutput,
+  type PaintedOutput,
+} from "./helpers";
 
 // #region interfaces
 interface TwoElementProps {
@@ -155,11 +159,11 @@ const Mode = (props: ModeProps) => {
 };
 
 const Complexity = (props: ScorerProps) => {
-  const [score, setScore] = useState(0)
+  const [score, setScore] = useState(0);
 
   useEffect(() => {
-    setScore(calculateComplexity(props.inputText, props.mode))
-  }, [props.inputText, props.mode])
+    setScore(calculateComplexity(props.inputText, props.mode));
+  }, [props.inputText, props.mode]);
 
   return (
     <div className={`${blob} text-white text-start`}>
@@ -175,8 +179,8 @@ const KanjiInput = (props: InputProps) => {
   const [kanjiInput, setKanjiInput] = useState("");
 
   function handleInputChange(input: string) {
-    setKanjiInput(input)
-    props.onInputChange(input)
+    setKanjiInput(input);
+    props.onInputChange(input);
   }
 
   return (
@@ -202,18 +206,24 @@ const KanjiInput = (props: InputProps) => {
 };
 
 const KanjiResult = (props: ScorerProps) => {
-  const [colorMap, setColorMap] = useState<PaintedOutput[]>([])
+  const [colorMap, setColorMap] = useState<PaintedOutput[]>([]);
 
   useEffect(() => {
-    setColorMap(paintOutput(props.inputText, props.mode))
-  }, [props.inputText, props.mode])
+    setColorMap(paintOutput(props.inputText, props.mode));
+  }, [props.inputText, props.mode]);
 
   return (
     <div className={`${blob} text-start text-white content-start pt-3`}>
       <h3 className="text-lg font-semibold">Result</h3>
-      <div aria-label="Kanji Result" className="bg-white/10 rounded-lg text-lg px-2 py-1 overflow-y-auto whitespace-pre-wrap h-72">{colorMap.map(({character, textClass}, index) => (
-        <span key={index} className={textClass}>{character}</span>
-      ))}
+      <div
+        aria-label="Kanji Result"
+        className="bg-white/10 rounded-lg text-lg px-2 py-1 overflow-y-auto whitespace-pre-wrap h-72"
+      >
+        {colorMap.map(({ character, textClass }, index) => (
+          <span key={index} className={textClass}>
+            {character}
+          </span>
+        ))}
       </div>
     </div>
   );

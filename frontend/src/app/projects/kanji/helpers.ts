@@ -1,158 +1,165 @@
-import {kanjiAlgorithms} from "./data"
-import kanjiDataset from "./kanji_jon.json"
+import { kanjiAlgorithms } from "./data";
+import kanjiDataset from "./kanji_jon.json";
 
-const kanjiDictionary = kanjiDataset.Kanji as Record<string, KanjiEntry> 
+const kanjiDictionary = kanjiDataset.Kanji as Record<string, KanjiEntry>;
 
 export interface PaintedOutput {
-    character: string,
-    textClass: string
+  character: string;
+  textClass: string;
 }
 
 interface KanjiEntry {
-    "joyo-grade"?: number | string,
-    "jlpt-level"?: number,
-    "wk-level"?: number,
-    "real-level"?: number
+  "joyo-grade"?: number | string;
+  "jlpt-level"?: number;
+  "wk-level"?: number;
+  "real-level"?: number;
 }
 
 function getAlgorithm(mode: string) {
-    if (!kanjiAlgorithms[mode]) {
-        throw new Error;
-    }
+  if (!kanjiAlgorithms[mode]) {
+    throw new Error();
+  }
 
-    return kanjiAlgorithms[mode].legend;
+  return kanjiAlgorithms[mode].legend;
 }
 
 function getDefaultLevel(character: string, maxLevel: number): number {
-    const realLevel = kanjiDictionary[character]["real-level"]
+  const realLevel = kanjiDictionary[character]["real-level"];
 
-    if (!realLevel) {
-        return maxLevel;
-    }
-    else {
-        return realLevel;
-    }
+  if (!realLevel) {
+    return maxLevel;
+  } else {
+    return realLevel;
+  }
 }
 
 function getJoyoLevel(character: string, maxLevel: number): number {
-    const joyoLevel = kanjiDictionary[character]["joyo-grade"]
-    
-    if (!joyoLevel || typeof(joyoLevel) !== "number" || joyoLevel === 9) {
-        return maxLevel;
-    }
-    else {
-        return joyoLevel;
-    }
+  const joyoLevel = kanjiDictionary[character]["joyo-grade"];
+
+  if (!joyoLevel || typeof joyoLevel !== "number" || joyoLevel === 9) {
+    return maxLevel;
+  } else {
+    return joyoLevel;
+  }
 }
 
 function getJLPTLevel(character: string, maxLevel: number): number {
-    const jlptLevel = kanjiDictionary[character]["jlpt-level"]
-    
-    if (!jlptLevel) {
-        return maxLevel;
-    }
+  const jlptLevel = kanjiDictionary[character]["jlpt-level"];
 
-    switch(jlptLevel) {
-        case 5:
-            return 1;
-        case 4:
-            return 2;
-        case 3:
-            return 3;
-        case 2:
-            return 4;
-        case 1:
-            return 5;
-        default:
-            return maxLevel;
-    }
+  if (!jlptLevel) {
+    return maxLevel;
+  }
+
+  switch (jlptLevel) {
+    case 5:
+      return 1;
+    case 4:
+      return 2;
+    case 3:
+      return 3;
+    case 2:
+      return 4;
+    case 1:
+      return 5;
+    default:
+      return maxLevel;
+  }
 }
 
 function getWaniKaniLevel(character: string, maxLevel: number): number {
-    const wkLevel = kanjiDictionary[character]["wk-level"]
+  const wkLevel = kanjiDictionary[character]["wk-level"];
 
-    if (!wkLevel) {
-        return maxLevel;
-    }
+  if (!wkLevel) {
+    return maxLevel;
+  }
 
-    // to map 1-10 to 1, divide by 10, then do a ceiling
-    return Math.ceil(wkLevel / 10)
-
+  // to map 1-10 to 1, divide by 10, then do a ceiling
+  return Math.ceil(wkLevel / 10);
 }
 
 function getAlgorithmIndex(character: string, mode: string): number | null {
-    if (!(character in kanjiDictionary)) { return null; }
-    
-    const maxLevel = getAlgorithm(mode).length;
-    let level: number | null = null
-    switch(mode) {
-        case "Default":
-            level = getDefaultLevel(character, maxLevel)
-            break
-        case "Joyo":
-            level = getJoyoLevel(character, maxLevel)
-            break
-        case "JLPT":
-            level = getJLPTLevel(character, maxLevel)
-            break
-        case "WaniKani":
-            level = getWaniKaniLevel(character, maxLevel)
-            break
-        default:
-            return null
-    }
+  if (!(character in kanjiDictionary)) {
+    return null;
+  }
 
-    if (!level) { return null; }
-    
-    // since maps are zero-indexed, decrement level by 1 to get its index
-    return level - 1
+  const maxLevel = getAlgorithm(mode).length;
+  let level: number | null = null;
+  switch (mode) {
+    case "Default":
+      level = getDefaultLevel(character, maxLevel);
+      break;
+    case "Joyo":
+      level = getJoyoLevel(character, maxLevel);
+      break;
+    case "JLPT":
+      level = getJLPTLevel(character, maxLevel);
+      break;
+    case "WaniKani":
+      level = getWaniKaniLevel(character, maxLevel);
+      break;
+    default:
+      return null;
+  }
+
+  if (!level) {
+    return null;
+  }
+
+  // since maps are zero-indexed, decrement level by 1 to get its index
+  return level - 1;
 }
 
-function getColor(character: string, mode: string, defaultClass: string = "text-white"): string {
-    const index = getAlgorithmIndex(character, mode)
-    if (index === null) {
-        return defaultClass;
-    }
+function getColor(
+  character: string,
+  mode: string,
+  defaultClass: string = "text-white",
+): string {
+  const index = getAlgorithmIndex(character, mode);
+  if (index === null) {
+    return defaultClass;
+  }
 
-    const algorithm = getAlgorithm(mode)
-    return algorithm[index].textClass;
+  const algorithm = getAlgorithm(mode);
+  return algorithm[index].textClass;
 }
 
 function paintOutput(input: string, mode: string): PaintedOutput[] {
-    if (!input) {
-        return [];
-    }
-    
-    const colorMap: PaintedOutput[] = [];
+  if (!input) {
+    return [];
+  }
 
-    for (const character of input) {
-        const color = getColor(character, mode)
+  const colorMap: PaintedOutput[] = [];
 
-        colorMap.push({
-            character: character,
-            textClass: color
-        })
-    }
+  for (const character of input) {
+    const color = getColor(character, mode);
 
-    return colorMap;
+    colorMap.push({
+      character: character,
+      textClass: color,
+    });
+  }
+
+  return colorMap;
 }
 
 export function calculateComplexity(input: string, mode: string): number {
-    if (!input) {
-        return 0;
+  if (!input) {
+    return 0;
+  }
+
+  let score = 0;
+  let algorithm = getAlgorithm(mode);
+
+  for (const character of input) {
+    const index = getAlgorithmIndex(character, mode);
+    if (index === null) {
+      continue;
     }
 
-    let score = 0;
-    let algorithm = getAlgorithm(mode)
+    score += algorithm[index].complexity;
+  }
 
-    for (const character of input) {
-        const index = getAlgorithmIndex(character, mode)
-        if (index === null) {continue;}
-
-        score += algorithm[index].complexity
-    }
-
-    return score;
+  return score;
 }
 
-export {paintOutput}
+export { paintOutput };
