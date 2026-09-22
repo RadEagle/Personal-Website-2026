@@ -1,7 +1,13 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import { blob } from "../../../Library/styles";
-import { exampleKanji, kanjiAlgorithms, maxInputLength, sources } from "./data";
+import {
+  exampleKanji,
+  kanjiAlgorithms,
+  maxInputLength,
+  sources,
+  type LegendItem,
+} from "./data";
 import { email } from "../../../Library/data";
 import {
   calculateComplexity,
@@ -169,17 +175,36 @@ const Mode = (props: ModeProps) => {
 };
 
 const Complexity = (props: ScorerProps) => {
-  const [score, setScore] = useState(0);
+  const [algEntry, setAlgEntry] = useState<LegendItem | undefined>(undefined);
 
   useEffect(() => {
-    setScore(calculateComplexity(props.inputText, props.mode));
+    const calcScore = calculateComplexity(props.inputText, props.mode);
+    setAlgEntry(
+      calcScore > 0
+        ? kanjiAlgorithms[props.mode].legend[calcScore - 1]
+        : undefined,
+    );
   }, [props.inputText, props.mode]);
 
   return (
     <div className={`${blob} text-white text-start`}>
-      <div className="flex gap-2 items-center text-xl font-semibold">
-        <h2>Complexity:</h2>
-        {props.inputText ? <p>{score}</p> : null}
+      <div className="flex gap-2 items-center text-md font-semibold">
+        <h2 className="text-xl">Complexity:</h2>
+        {props.inputText ? (
+          algEntry ? (
+            <span
+              className={`bg-white/20 ${algEntry.textClass} border-2 ${algEntry.borderClass} rounded-lg px-2 py-1 font-semibold`}
+            >
+              {algEntry.label}
+            </span>
+          ) : (
+            <span
+              className={`bg-white/20 text-white border-2 border-white rounded-lg px-2 py-1 font-semibold`}
+            >
+              Not Japanese
+            </span>
+          )
+        ) : null}
       </div>
     </div>
   );

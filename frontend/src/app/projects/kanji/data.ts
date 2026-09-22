@@ -18,7 +18,7 @@ interface AlgorithmEntry {
   legend: LegendItem[];
 }
 
-interface LegendItem {
+export interface LegendItem {
   label: string;
   complexity: number;
   textClass: string;

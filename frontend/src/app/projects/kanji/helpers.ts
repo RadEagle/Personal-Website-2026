@@ -77,7 +77,7 @@ function getWaniKaniLevel(character: string, maxLevel: number): number {
   return Math.ceil(wkLevel / 10);
 }
 
-function getAlgorithmIndex(character: string, mode: string): number | null {
+function getAlgorithmLevel(character: string, mode: string): number | null {
   if (!(character in kanjiDictionary)) {
     return null;
   }
@@ -101,12 +101,14 @@ function getAlgorithmIndex(character: string, mode: string): number | null {
       return null;
   }
 
-  if (!level) {
-    return null;
-  }
+  return level;
+}
+
+function getAlgorithmIndex(character: string, mode: string): number | null {
+  const level = getAlgorithmLevel(character, mode);
 
   // since maps are zero-indexed, decrement level by 1 to get its index
-  return level - 1;
+  return level ? level - 1 : null;
 }
 
 function getColor(
@@ -147,19 +149,43 @@ export function calculateComplexity(input: string, mode: string): number {
     return 0;
   }
 
-  let score = 0;
-  let algorithm = getAlgorithm(mode);
+  let complexityMap: Record<number, number> = {};
+  let totalKanji = 0;
+  let maxLevel = getAlgorithm(mode).length;
 
   for (const character of input) {
-    const index = getAlgorithmIndex(character, mode);
-    if (index === null) {
+    const level = getAlgorithmLevel(character, mode);
+    if (level === null) {
       continue;
     }
+    if (!(level in complexityMap)) {
+      complexityMap[level] = 0;
+    }
 
-    score += algorithm[index].complexity;
+    complexityMap[level]++;
+    totalKanji++;
   }
 
-  return score;
+  // long text - take highest complexity that meets criteria
+  const occurrencesThreshold = 5;
+  const shareThreshold = 10;
+
+  for (let level = maxLevel; level > 0; level--) {
+    const occurrences = complexityMap[level];
+    const share = (occurrences / totalKanji) * 100;
+
+    if (occurrences >= occurrencesThreshold && share >= shareThreshold) {
+      return level;
+    }
+  }
+
+  // short text - average complexities to determine reading level
+  let sum = 0;
+  for (let level = 1; level <= maxLevel; level++) {
+    sum += level * complexityMap[level];
+  }
+
+  return Math.round(sum / totalKanji);
 }
 
 export { paintOutput };
