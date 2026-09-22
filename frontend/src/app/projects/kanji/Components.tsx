@@ -204,14 +204,14 @@ const KanjiResult = (props: ScorerProps) => {
   const [colorMap, setColorMap] = useState<PaintedOutput[]>([])
 
   useEffect(() => {
-    setColorMap(paintOutput(props.mode, props.inputText))
-  }, [props.mode, props.inputText])
+    setColorMap(paintOutput(props.inputText, props.mode))
+  }, [props.inputText, props.mode])
 
   return (
     <div className={`${blob} text-start text-white content-start pt-3`}>
       <h3 className="text-lg font-semibold">Result</h3>
-      <div aria-label="Kanji Result" className="bg-white/10 rounded-lg text-lg px-2 py-1 overflow-y-auto whitespace-pre-wrap max-h-73">{colorMap.map(({character, textClass}) => (
-        <span className={textClass}>{character}</span>
+      <div aria-label="Kanji Result" className="bg-white/10 rounded-lg text-lg px-2 py-1 overflow-y-auto whitespace-pre-wrap max-h-73">{colorMap.map(({character, textClass}, index) => (
+        <span key={index} className={textClass}>{character}</span>
       ))}
       </div>
     </div>

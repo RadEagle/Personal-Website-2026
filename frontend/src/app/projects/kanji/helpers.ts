@@ -23,33 +23,33 @@ function getAlgorithm(mode: string) {
     return kanjiAlgorithms[mode].legend;
 }
 
-function getDefaultLevel(character: string): number {
+function getDefaultLevel(character: string, maxLevel: number): number {
     const realLevel = kanjiDictionary[character]["real-level"]
 
     if (!realLevel) {
-        return 12
+        return maxLevel;
     }
     else {
         return realLevel;
     }
 }
 
-function getJoyoLevel(character: string): number {
+function getJoyoLevel(character: string, maxLevel: number): number {
     const joyoLevel = kanjiDictionary[character]["joyo-grade"]
     
     if (!joyoLevel || typeof(joyoLevel) !== "number" || joyoLevel === 9) {
-        return 8;
+        return maxLevel;
     }
     else {
         return joyoLevel;
     }
 }
 
-function getJLPTLevel(character: string): number {
+function getJLPTLevel(character: string, maxLevel: number): number {
     const jlptLevel = kanjiDictionary[character]["jlpt-level"]
     
     if (!jlptLevel) {
-        return 6;
+        return maxLevel;
     }
 
     switch(jlptLevel) {
@@ -64,15 +64,15 @@ function getJLPTLevel(character: string): number {
         case 1:
             return 5;
         default:
-            return 6;
+            return maxLevel;
     }
 }
 
-function getWaniKaniLevel(character: string): number {
+function getWaniKaniLevel(character: string, maxLevel: number): number {
     const wkLevel = kanjiDictionary[character]["wk-level"]
 
     if (!wkLevel) {
-        return 7;
+        return maxLevel;
     }
 
     // to map 1-10 to 1, divide by 10, then do a ceiling
@@ -80,43 +80,45 @@ function getWaniKaniLevel(character: string): number {
 
 }
 
-function getColor(mode: string, character: string, defaultClass: string = "text-white"): string {
-    if (!(character in kanjiDictionary)) {
-        return defaultClass
-    }
-
+function getAlgorithmIndex(character: string, mode: string): number | null {
+    if (!(character in kanjiDictionary)) { return null; }
+    
+    const maxLevel = getAlgorithm(mode).length;
     let level: number | null = null
     switch(mode) {
         case "Default":
-            level = getDefaultLevel(character)
+            level = getDefaultLevel(character, maxLevel)
             break
         case "Joyo":
-            level = getJoyoLevel(character)
+            level = getJoyoLevel(character, maxLevel)
             break
         case "JLPT":
-            level = getJLPTLevel(character)
+            level = getJLPTLevel(character, maxLevel)
             break
         case "WaniKani":
-            level = getWaniKaniLevel(character)
+            level = getWaniKaniLevel(character, maxLevel)
             break
         default:
-            return defaultClass
+            return null
     }
 
-    if (!level) {
-        return defaultClass
-    }
-
+    if (!level) { return null; }
+    
     // since maps are zero-indexed, decrement level by 1 to get its index
-    const algorithm = getAlgorithm(mode);
-    if (level > algorithm.length || level < 1) {
-        return defaultClass
-    }
-
-    return algorithm[level-1].textClass;
+    return level - 1
 }
 
-function paintOutput(mode: string, input: string): PaintedOutput[] {
+function getColor(character: string, mode: string, defaultClass: string = "text-white"): string {
+    const index = getAlgorithmIndex(character, mode)
+    if (!index) {
+        return defaultClass;
+    }
+
+    const algorithm = getAlgorithm(mode)
+    return algorithm[index].textClass;
+}
+
+function paintOutput(input: string, mode: string): PaintedOutput[] {
     if (!input) {
         return [];
     }
@@ -124,7 +126,7 @@ function paintOutput(mode: string, input: string): PaintedOutput[] {
     const colorMap: PaintedOutput[] = [];
 
     for (const character of input) {
-        const color = getColor(mode, character)
+        const color = getColor(character, mode)
 
         colorMap.push({
             character: character,
@@ -133,6 +135,10 @@ function paintOutput(mode: string, input: string): PaintedOutput[] {
     }
 
     return colorMap;
+}
+
+function calculateComplexity(input: string, mode: string): number {
+    return 0
 }
 
 export {paintOutput}
