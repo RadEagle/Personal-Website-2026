@@ -23,6 +23,8 @@ export interface LegendItem {
   complexity: number;
   textClass: string;
   borderClass: string;
+  occurrenceThreshold?: number;
+  shareThreshold?: number;
 }
 
 export const kanjiAlgorithms: Record<string, AlgorithmEntry> = {
@@ -101,6 +103,8 @@ export const kanjiAlgorithms: Record<string, AlgorithmEntry> = {
         complexity: 12,
         textClass: "text-fuchsia-500",
         borderClass: "border-fuchsia-500",
+        occurrenceThreshold: 5,
+        shareThreshold: 5,
       },
     ],
   },
@@ -155,6 +159,8 @@ export const kanjiAlgorithms: Record<string, AlgorithmEntry> = {
         complexity: 8,
         textClass: "text-fuchsia-500",
         borderClass: "border-fuchsia-500",
+        occurrenceThreshold: 5,
+        shareThreshold: 5,
       },
     ],
   },
@@ -167,36 +173,48 @@ export const kanjiAlgorithms: Record<string, AlgorithmEntry> = {
         complexity: 1,
         textClass: "text-sky-400",
         borderClass: "border-sky-400",
+        occurrenceThreshold: 5,
+        shareThreshold: 10,
       },
       {
         label: "JLPT 4",
         complexity: 2,
         textClass: "text-green-400",
         borderClass: "border-green-400",
+        occurrenceThreshold: 12,
+        shareThreshold: 10,
       },
       {
         label: "JLPT 3",
         complexity: 3,
         textClass: "text-amber-400",
         borderClass: "border-amber-400",
+        occurrenceThreshold: 15,
+        shareThreshold: 10,
       },
       {
         label: "JLPT 2",
         complexity: 4,
         textClass: "text-orange-400",
         borderClass: "border-orange-400",
+        occurrenceThreshold: 10,
+        shareThreshold: 10,
       },
       {
         label: "JLPT 1",
         complexity: 5,
         textClass: "text-red-500",
         borderClass: "border-red-500",
+        occurrenceThreshold: 5,
+        shareThreshold: 11,
       },
       {
         label: "Beyond JLPT",
         complexity: 6,
         textClass: "text-fuchsia-500",
         borderClass: "border-fuchsia-500",
+        occurrenceThreshold: 5,
+        shareThreshold: 6,
       },
     ],
   },
@@ -245,6 +263,8 @@ export const kanjiAlgorithms: Record<string, AlgorithmEntry> = {
         complexity: 7,
         textClass: "text-fuchsia-500",
         borderClass: "border-fuchsia-500",
+        occurrenceThreshold: 5,
+        shareThreshold: 5,
       },
     ],
   },

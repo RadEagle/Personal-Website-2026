@@ -167,12 +167,14 @@ export function calculateComplexity(input: string, mode: string): number {
   }
 
   // long text - take highest complexity that meets criteria
-  const occurrencesThreshold = 5;
-  const shareThreshold = 10;
+  const defaultOccurrencesThreshold = 5;
+  const defaultShareThreshold = 10;
 
   for (let level = maxLevel; level > 0; level--) {
     const occurrences = complexityMap[level];
     const share = (occurrences / totalKanji) * 100;
+    const occurrencesThreshold = getAlgorithm(mode)[level-1].occurrenceThreshold || defaultOccurrencesThreshold;
+    const shareThreshold = getAlgorithm(mode)[level-1].shareThreshold || defaultShareThreshold;
 
     if (occurrences >= occurrencesThreshold && share >= shareThreshold) {
       return level;
