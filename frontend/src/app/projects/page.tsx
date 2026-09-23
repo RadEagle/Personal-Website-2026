@@ -3,7 +3,33 @@ import { type Metadata } from "next";
 import { ProjectsList, OtherProjectsList } from "./Components";
 
 export const metadata: Metadata = {
-  title: "Projects | Jon's Homepage",
+  title: "Projects",
+  description:
+    "Projects made by Jonathan Chau, including a Kanji Complexity Scanner and more to come!",
+  alternates: { canonical: "/projects/" },
+
+  openGraph: {
+    title: "Projects | Jon's Homepage",
+    description:
+      "Projects made by Jonathan Chau, including a Kanji Complexity Scanner and more to come!",
+    url: "https://www.jqchau.me/projects/",
+
+    siteName: "Jon's Homepage",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1280,
+        height: 720,
+        alt: "Preview image for Jon's Homepage",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 const App = () => {
