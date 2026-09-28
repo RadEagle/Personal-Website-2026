@@ -24,6 +24,27 @@ data "aws_iam_policy_document" "cloudfront_read_bucket" {
       values   = [aws_cloudfront_distribution.distribution.arn]
     }
   }
+
+  statement {
+    principals {
+      type        = "Service"
+      identifiers = ["cloudfront.amazonaws.com"]
+    }
+
+    actions = [
+      "s3:ListBucket"
+    ]
+
+    resources = [
+      aws_s3_bucket.static_server.arn,
+    ]
+
+    condition {
+      test     = "StringEquals"
+      variable = "AWS:SourceArn"
+      values   = [aws_cloudfront_distribution.distribution.arn]
+    }
+  }
 }
 
 resource "aws_s3_bucket_public_access_block" "public_access" {
