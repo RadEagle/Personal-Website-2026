@@ -47,7 +47,7 @@ data "aws_iam_policy_document" "github_actions_s3_upload" {
     condition {
       test     = "StringEquals"
       variable = "token.actions.githubusercontent.com:sub"
-      values   = ["repo:RadEagle/Personal-Website-2026:ref:refs/heads/main"]
+      values   = ["repo:RadEagle@31170739/Personal-Website-2026@1381993270:ref:refs/heads/main"]
     }
   }
 }
