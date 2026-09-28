@@ -42,6 +42,11 @@ resource "aws_cloudfront_distribution" "distribution" {
     allowed_methods        = ["GET", "HEAD"]
     cached_methods         = ["GET", "HEAD"]
     cache_policy_id        = data.aws_cloudfront_cache_policy.caching_optimized.id
+
+    function_association {
+      event_type   = "viewer-request"
+      function_arn = aws_cloudfront_function.viewer_request.arn
+    }
   }
 
   viewer_certificate {
@@ -55,4 +60,11 @@ resource "aws_cloudfront_distribution" "distribution" {
       restriction_type = "none"
     }
   }
+}
+
+resource "aws_cloudfront_function" "viewer_request" {
+  name    = "viewer-request"
+  runtime = "cloudfront-js-2.0"
+  comment = "Rewrite incoming viewer requests"
+  code    = file("${path.module}/viewer-request.js")
 }
