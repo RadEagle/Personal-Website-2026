@@ -59,4 +59,8 @@ describe("Calculate Complexity", () => {
   test("Fantasy", () => {
     expect(calculateComplexity(fantasyExcerpt, mode)).toEqual(6);
   });
+
+  test("Short", () => {
+    expect(calculateComplexity("ジョジョの奇妙な冒険", mode)).toEqual(5);
+  });
 });
