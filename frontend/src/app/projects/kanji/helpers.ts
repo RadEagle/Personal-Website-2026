@@ -158,6 +158,7 @@ export function calculateComplexity(input: string, mode: string): number {
     if (level === null) {
       continue;
     }
+
     if (!(level in complexityMap)) {
       complexityMap[level] = 0;
     }
@@ -187,7 +188,14 @@ export function calculateComplexity(input: string, mode: string): number {
   // short text - average complexities to determine reading level
   let sum = 0;
   for (let level = 1; level <= maxLevel; level++) {
+    if (!(level in complexityMap)) {
+      continue;
+    }
+
     sum += level * complexityMap[level];
+    console.log(`Sum: ${sum}`);
+    console.log(`Level: ${level}`);
+    console.log(`Amount: ${complexityMap[level]}`);
   }
 
   return Math.round(sum / totalKanji);
