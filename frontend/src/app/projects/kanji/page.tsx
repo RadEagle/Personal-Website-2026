@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "Kanji Complexity Scanner | Jon's Homepage",
     description:
       "Paste Japanese text to score kanji by Joyo grade, JLPT level, and WaniKani. Free tool by Jonathan Chau.",
-    url: "https://www.jqchau.me/projects/kanji/",
+    url: "https://www.jqchau.com/projects/kanji/",
 
     siteName: "Jon's Homepage",
     images: [

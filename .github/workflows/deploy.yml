@@ -1,0 +1,41 @@
+name: Deploy Portfolio Website
+
+on:
+  push:
+    branches:
+      - main
+      - staging
+
+jobs:
+  prepare-artifacts:
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Checkout Code
+          uses: actions/checkout@v6
+
+        - name: Set up Node.js & Build Frontend
+          uses: actions/setup-node@v6
+          with:
+            node-version: 24
+        - run: |
+            cd frontend
+            npm install
+            npm run build
+
+        - uses: actions/upload-artifact@v4
+          with:
+            name: frontend-out
+            path: frontend/out
+
+
+  deploy-production:
+    if: github.ref.name == 'main'
+    runs-on: [production]
+    needs: prepare-artifacts
+
+
+  deploy-staging:
+    if: github.ref.name == 'main'
+    runs-on: [staging]
+    needs: prepare-artifacts

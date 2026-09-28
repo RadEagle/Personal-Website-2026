@@ -1,2 +1,5 @@
 todo/*
 .cursor
+terraform/**/.terraform
+terraform/**/*.tfstate*
+terraform/**/aws*

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "About Me | Jon's Homepage",
     description:
       "About Jonathan Chau: Software Engineer, formerly at Epic Systems, UCLA M.S. Computer Science. TypeScript, Python, C#, AWS.",
-    url: "https://www.jqchau.me/about-me/",
+    url: "https://www.jqchau.com/about-me/",
 
     siteName: "Jon's Homepage",
     images: [

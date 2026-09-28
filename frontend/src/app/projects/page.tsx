@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     title: "Projects | Jon's Homepage",
     description:
       "Projects made by Jonathan Chau, including a Kanji Complexity Scanner and more to come!",
-    url: "https://www.jqchau.me/projects/",
+    url: "https://www.jqchau.com/projects/",
 
     siteName: "Jon's Homepage",
     images: [
