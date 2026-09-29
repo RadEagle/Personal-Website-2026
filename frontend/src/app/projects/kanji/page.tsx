@@ -16,10 +16,10 @@ export const metadata: Metadata = {
     siteName: "Jon's Homepage",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-kanji.jpg",
         width: 1280,
         height: 720,
-        alt: "Preview image for Jon's Homepage",
+        alt: "Preview image for the Kanji Complexity Scanner",
       },
     ],
     locale: "en_US",
