@@ -1,4 +1,5 @@
 import { blob } from "../../library/styles";
+import portraitAbout from "../../assets/portrait-about.png"
 import { identity, proof, story, skills, exploring, interests } from "./data";
 
 interface CapabilityProps {
@@ -17,7 +18,7 @@ const Introduction = () => {
       </div>
       <div className="flex flex-col" id="img-container">
         <img
-          src="/portrait-about.png"
+          src={portraitAbout.src}
           alt="Jonathan Chau"
           className="block rounded-xl relative my-5 mx-auto md:m-0 w-full md:max-w-xs leading-0"
         />
