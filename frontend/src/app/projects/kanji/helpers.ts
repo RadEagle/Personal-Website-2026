@@ -193,9 +193,6 @@ export function calculateComplexity(input: string, mode: string): number {
     }
 
     sum += level * complexityMap[level];
-    console.log(`Sum: ${sum}`);
-    console.log(`Level: ${level}`);
-    console.log(`Amount: ${complexityMap[level]}`);
   }
 
   return Math.round(sum / totalKanji);
