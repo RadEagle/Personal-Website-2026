@@ -102,7 +102,7 @@ const Introduction = () => {
         As a gentle introduction, copy, paste, and evaluate the following
         examples:
       </p>
-      <div className="flex flex-wrap gap-1">{kanjiExamples}</div>
+      <div className="flex flex-wrap gap-1.25">{kanjiExamples}</div>
       <div
         aria-live="polite"
         className={`text-xs bg-green-400 rounded-lg p-3 text-center border-green-700 border-2 font-semibold fixed z-10 bottom-2 left-15 ${showCopied === "in" ? "animate-toast-fade-in" : showCopied === "out" ? "animate-toast-fade-out" : "hidden"}`}
@@ -266,17 +266,14 @@ const KanjiResult = (props: ScorerProps) => {
 
 const SourceLink = (props: SourceLinkProps) => {
   return (
-    <p>
-      {props.label}:{" "}
-      <a
-        href={props.link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-sky-400"
-      >
-        {props.link}
-      </a>
-    </p>
+    <a
+      href={props.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="bg-white/20 rounded-lg px-2 py-1 border border-sky-400 hover:scale-102 hover:opacity-70 duration-200 ease-in-out"
+    >
+      {props.label}
+    </a>
   );
 };
 
@@ -284,7 +281,7 @@ const Sources = () => {
   return (
     <div className={`${blob} text-white text-start content-start`}>
       <h2 className="text-xl font-bold">Sources</h2>
-      <div>
+      <div className="flex flex-wrap gap-1.5">
         {sources.map((source) => (
           <SourceLink
             key={source.label}

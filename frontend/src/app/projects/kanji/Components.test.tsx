@@ -84,11 +84,8 @@ describe("Kanji Component Data", () => {
 
   // Sources
   test("Sources list is parameterized", () => {
-    const link1 = screen.getByText("www.mockexample1.us");
-    const link2 = screen.getByText("www.mockexample2.us/");
-
-    expect(screen.getByText("Label 1::")).toBeInTheDocument();
-    expect(screen.getByText("Label 2:")).toBeInTheDocument();
+    const link1 = screen.getByText("Label 1:");
+    const link2 = screen.getByText("Label 2");
 
     expect(link1).toBeInTheDocument();
     expect(link1).toHaveAttribute("href", "www.mockexample1.us");

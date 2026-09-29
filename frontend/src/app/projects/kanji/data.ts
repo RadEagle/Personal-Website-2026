@@ -20,7 +20,7 @@ export const exampleKanji = [
   "大谷翔平",
   "図書館",
   "真空波動拳",
-  "奇跡は諦めない奴の頭上に降りてくる"
+  "奇跡は諦めない奴の頭上に降りてくる",
 ];
 
 // #region Algorithm
@@ -292,15 +292,27 @@ interface Source {
 
 export const sources: Source[] = [
   {
-    label: "Grade Kanji",
-    link: "https://www.kanji-link.com/en/kanji/grade/",
+    label: "Joyo & JLPT Kanji",
+    link: "https://pypi.org/project/kanji-lists/",
   },
   {
-    label: "JLPT Kanji",
-    link: "https://www.kanshudo.com/collections/jlpt_kanji",
-  },
-  {
-    label: "Wanikani",
+    label: "WaniKani Kanji",
     link: "https://www.wanikani.com/kanji",
+  },
+  {
+    label: "Kanken Kanji",
+    link: "https://jpdb.io/kanken-kanji",
+  },
+  {
+    label: "KanjiCards | Jisho Frequency",
+    link: "https://kanjicards.org/kanji-list-by-freq.html",
+  },
+  {
+    label: "Jpdb Frequency",
+    link: "https://jpdb.io/kanji-by-frequency",
+  },
+  {
+    label: "Aozora Frequency",
+    link: "https://github.com/scriptin/kanji-frequency/blob/master/data/aozora_characters.csv",
   },
 ];
