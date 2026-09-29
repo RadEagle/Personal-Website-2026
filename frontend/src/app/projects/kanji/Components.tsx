@@ -82,7 +82,7 @@ const Introduction = () => {
   const kanjiExamples = exampleKanji.map((example) => (
     <button
       key={example}
-      className="bg-white/20 rounded-lg px-2 py-1 hover:scale-101 hover:cursor-pointer hover:opacity-70 duration-200 ease-in-out"
+      className="bg-white/20 rounded-lg text-base px-2 py-1 hover:scale-101 hover:cursor-pointer hover:opacity-70 duration-200 ease-in-out"
       onClick={() => {
         handleCopyKanji(example);
       }}
