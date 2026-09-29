@@ -1,6 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
-import { blob } from "../../../library-temp/styles";
+import { blob } from "../../../library/styles";
 import {
   exampleKanji,
   kanjiAlgorithms,
@@ -8,7 +8,7 @@ import {
   sources,
   type LegendItem,
 } from "./data";
-import { email } from "../../../library-temp/data";
+import { email } from "../../../library/data";
 import {
   calculateComplexity,
   paintOutput,

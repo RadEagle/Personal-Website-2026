@@ -1,11 +1,11 @@
 import portrait from "../assets/portrait.png";
-import { blob } from "../library-temp/styles";
+import { blob } from "../library/styles";
 import {
   email,
   headlineText,
   myName,
   projectCaptionText,
-} from "../library-temp/data";
+} from "../library/data";
 
 const MobileHeroPortrait = () => {
   return (
