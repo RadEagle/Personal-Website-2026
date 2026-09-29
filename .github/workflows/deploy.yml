@@ -17,10 +17,10 @@ jobs:
 
       steps:
         - name: Checkout Code
-          uses: actions/checkout@v6
+          uses: actions/checkout@v7
 
         - name: Set up Node.js & Build Frontend
-          uses: actions/setup-node@v6
+          uses: actions/setup-node@v7
           with:
             node-version: 24
         - run: |
@@ -28,7 +28,7 @@ jobs:
             npm install
             npm run build
 
-        - uses: actions/upload-artifact@v4
+        - uses: actions/upload-artifact@v7
           with:
             name: frontend-out
             path: frontend/out
@@ -41,18 +41,18 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Download Website Build
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: frontend-out
           path: frontend/out
 
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@v6
         with:
-          role-to-assume: arn:aws:iam::${{ secrets.AWS_GHA_USER_ID }}:role/GitHubActionsS3Upload
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GitHubActionsS3Upload
           aws-region: us-east-1
 
       - name: Sync website files to S3
