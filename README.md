@@ -1,7 +1,7 @@
 ## Introduction
 Hello everyone! My name is Jonathan Chau and this is my website where I showcase what I've built through Python, TypeScript, React, and AWS!
 
-Feel free to look around and interact with my projects at [jqchau.com](jqchau.com)
+Feel free to look around and interact with my projects at [jqchau.com](https://www.jqchau.com)
 
 ![demo](https://raw.githubusercontent.com/RadEagle/Personal-Website-2026/main/frontend/public/og-image.jpg)
 
