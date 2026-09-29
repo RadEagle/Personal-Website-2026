@@ -1,5 +1,5 @@
 import { blob } from "../../library/styles";
-import portraitAbout from "../../assets/portrait-about.png"
+import portraitAbout from "../../assets/portrait-about.png";
 import { identity, proof, story, skills, exploring, interests } from "./data";
 
 interface CapabilityProps {

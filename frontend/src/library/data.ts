@@ -11,8 +11,7 @@ export const projectCaptionText = "Is kanji still really scary?";
 // Footer Component
 export const email = "jonathanqchau@gmail.com";
 
-export const resumeLink =
-  "/Jonathan_Chau_FullStack_Master_Resume.pdf";
+export const resumeLink = "/Jonathan_Chau_FullStack_Master_Resume.pdf";
 
 export const linkedInUsername = "jonathanqchau";
 

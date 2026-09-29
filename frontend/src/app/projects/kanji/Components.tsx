@@ -102,7 +102,9 @@ const Introduction = () => {
         As a gentle introduction, copy, paste, and evaluate the following
         examples:
       </p>
-      <div className="flex flex-wrap gap-1.25" translate="no">{kanjiExamples}</div>
+      <div className="flex flex-wrap gap-1.25" translate="no">
+        {kanjiExamples}
+      </div>
       <div
         aria-live="polite"
         className={`text-xs bg-green-400 rounded-lg p-3 text-center border-green-700 border-2 font-semibold fixed z-10 bottom-2 left-15 ${showCopied === "in" ? "animate-toast-fade-in" : showCopied === "out" ? "animate-toast-fade-out" : "hidden"}`}

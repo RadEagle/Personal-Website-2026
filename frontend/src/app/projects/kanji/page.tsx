@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 
   other: {
     google: "notranslate",
-  }
+  },
 };
 
 const App = () => {
