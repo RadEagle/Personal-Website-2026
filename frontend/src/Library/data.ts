@@ -12,7 +12,7 @@ export const projectCaptionText = "Is kanji still really scary?";
 export const email = "jonathanqchau@gmail.com";
 
 export const resumeLink =
-  "https://drive.google.com/file/d/17OkYbt3YDl1HKstxsX8Zf0b9EOqdCFMq/view?usp=sharing";
+  "/Jonathan_Chau_FullStack_Master_Resume.pdf";
 
 export const linkedInUsername = "jonathanqchau";
 
