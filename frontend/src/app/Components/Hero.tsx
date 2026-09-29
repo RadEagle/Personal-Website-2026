@@ -1,5 +1,4 @@
 import portrait from "../../assets/portrait.png";
-import kanji from "../../assets/kanji.jpeg";
 import { blob } from "../../Library/styles";
 import {
   email,
@@ -68,7 +67,7 @@ const ProjectBlob = () => {
           <img
             id="proj-img"
             className="rounded-xl w-full block mx-auto"
-            src={kanji.src}
+            src="/kanji.jpeg"
             alt="Project Image"
           />
         </a>
