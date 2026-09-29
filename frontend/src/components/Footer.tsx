@@ -3,7 +3,7 @@ import {
   githubUsername,
   linkedInUsername,
   resumeLink,
-} from "../library/data";
+} from "../library-temp/data";
 import emailIcon from "../assets/email.png";
 import resumeIcon from "../assets/resume.png";
 import linkedinIcon from "../assets/linkedin.png";

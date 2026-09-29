@@ -1,8 +1,8 @@
 import { type Metadata } from "next";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
-import { githubUsername, linkedInUsername, myName } from "../library/data";
-import { siteUrl } from "../library/site";
+import { githubUsername, linkedInUsername, myName } from "../library-temp/data";
+import { siteUrl } from "../library-temp/site";
 import "../index.css";
 
 const jsonLd = {

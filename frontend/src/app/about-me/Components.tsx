@@ -1,4 +1,4 @@
-import { blob } from "../../library/styles";
+import { blob } from "../../library-temp/styles";
 import portraitAbout from "../../assets/portrait-about.png"
 import { identity, proof, story, skills, exploring, interests } from "./data";
 

@@ -1,4 +1,4 @@
-import { blob } from "../../library/styles";
+import { blob } from "../../library-temp/styles";
 import { type Metadata } from "next";
 import { ProjectsList, OtherProjectsList } from "./Components";
 
