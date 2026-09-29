@@ -1,4 +1,4 @@
-import { kanjiAlgorithms } from "./data";
+import { kanjiAlgorithms } from "../data";
 
 // #region Excerpts
 export const jlpt5Excerpt =

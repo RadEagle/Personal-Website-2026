@@ -1,4 +1,4 @@
-import { blob } from "../../Library/styles";
+import { blob } from "../../library/styles";
 import { identity, proof, story, skills, exploring, interests } from "./data";
 
 interface CapabilityProps {

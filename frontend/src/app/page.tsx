@@ -1,4 +1,4 @@
-import { Hero } from "./Components/Hero";
+import { Hero } from "./Hero";
 
 const App = () => {
   return <Hero />;

@@ -1,9 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, test, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
-import { KanjiProject } from "./Components";
+import { KanjiProject } from "../Components";
 
-vi.mock("./data", () => ({
+vi.mock("../data", () => ({
   exampleKanji: ["武", "川", "絶対"],
   kanjiAlgorithms: {
     mode1: {
@@ -54,7 +54,7 @@ vi.mock("./data", () => ({
   ],
 }));
 
-vi.mock("../../../Library/data", () => ({
+vi.mock("../../../../library/data", () => ({
   email: "stungunamotti@example.com",
 }));
 

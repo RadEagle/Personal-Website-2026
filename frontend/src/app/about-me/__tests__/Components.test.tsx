@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, test, vi } from "vitest";
-import { AboutMe } from "./Components";
+import { AboutMe } from "../Components";
 
-vi.mock("./data.ts", () => ({
+vi.mock("../data.ts", () => ({
   identity: "Baseball player with over 150 career home runs",
   proof: "Tampa Bay Rays, Los Angeles Dodgers",
   story: "Mock story goes here",

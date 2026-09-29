@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { paintOutput, calculateComplexity } from "./helpers";
+import { paintOutput, calculateComplexity } from "../helpers";
 import {
   fantasyExcerpt,
   jlpt1Excerpt,

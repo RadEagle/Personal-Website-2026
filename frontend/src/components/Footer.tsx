@@ -3,11 +3,11 @@ import {
   githubUsername,
   linkedInUsername,
   resumeLink,
-} from "../../Library/data";
-import emailIcon from "../../assets/email.png";
-import resumeIcon from "../../assets/resume.png";
-import linkedinIcon from "../../assets/linkedin.png";
-import githubIcon from "../../assets/github.png";
+} from "../library/data";
+import emailIcon from "../assets/email.png";
+import resumeIcon from "../assets/resume.png";
+import linkedinIcon from "../assets/linkedin.png";
+import githubIcon from "../assets/github.png";
 
 interface FooterButtonProps {
   href: string;

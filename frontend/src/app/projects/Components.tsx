@@ -1,5 +1,5 @@
 "use client";
-import { blob } from "../../Library/styles";
+import { blob } from "../../library/styles";
 import projectsList from "./projectsList.json";
 import otherProjectsList from "./otherProjectsList.json";
 

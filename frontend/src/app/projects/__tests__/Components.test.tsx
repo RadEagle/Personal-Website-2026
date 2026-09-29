@@ -1,13 +1,13 @@
 import { render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, test, vi } from "vitest";
-import { ProjectsList, OtherProjectsList } from "./Components";
+import { ProjectsList, OtherProjectsList } from "../Components";
 
-vi.mock("./projectsList.json", async () => {
+vi.mock("../projectsList.json", async () => {
   const mockProjectsList = await import("./mockProjectsList.json");
   return mockProjectsList;
 });
 
-vi.mock("./otherProjectsList.json", async () => {
+vi.mock("../otherProjectsList.json", async () => {
   const mockOtherProjectsList = await import("./mockOtherProjectsList.json");
   return mockOtherProjectsList;
 });

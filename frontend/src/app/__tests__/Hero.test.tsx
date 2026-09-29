@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, test, vi } from "vitest";
-import { Hero } from "./Hero";
+import { Hero } from "../Hero";
 
-vi.mock("../../Library/data", () => ({
+vi.mock("../../library/data", () => ({
   myName: "John Smith",
   headlineText: "Cutting trees since 1580.",
   projectCaptionText: "Amazing house tour!!!",

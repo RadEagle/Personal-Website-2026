@@ -1,7 +1,7 @@
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, test } from "vitest";
-import { Header } from "./Header";
+import { Header } from "../Header";
 
 describe("Header", () => {
   beforeEach(() => {
