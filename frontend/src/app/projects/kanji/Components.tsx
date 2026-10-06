@@ -244,6 +244,7 @@ const KanjiInput = (props: InputProps) => {
 
 const KanjiResult = (props: ScorerProps) => {
   const [colorMap, setColorMap] = useState<PaintedOutput[]>([]);
+  const [hoveredChar, setHoveredChar] = useState("");
   const [selectedChar, setSelectedChar] = useState("");
   const [algEntry, setAlgEntry] = useState<LegendItem | undefined>(undefined);
 
@@ -259,31 +260,32 @@ const KanjiResult = (props: ScorerProps) => {
 
   // if a different character or mode is selected, update the stickied result
   useEffect(() => {
-    const calcScore = calculateComplexity(selectedChar, props.mode);
+    const char = hoveredChar || selectedChar;
+    const calcScore = calculateComplexity(char, props.mode);
     setAlgEntry(
       calcScore > 0
         ? kanjiAlgorithms[props.mode].legend[calcScore - 1]
         : undefined,
     );
-  }, [selectedChar, props.mode]);
+  }, [selectedChar, hoveredChar, props.mode]);
 
   return (
     <div className={`${blob} text-start text-white content-start pt-3`}>
       <div className="flex justify-between">
         <h3 className="text-lg font-semibold">Result</h3>
-        {selectedChar ? (
+        {hoveredChar || selectedChar ? (
           <div className="text-xs content-center" aria-label="Stickied result">
             {algEntry ? (
               <span
                 className={`bg-white/20 ${algEntry.textClass} text-xs border-2 ${algEntry.borderClass} rounded-lg px-2 py-1 font-semibold`}
               >
-                {selectedChar} - {algEntry.label}
+                {hoveredChar || selectedChar} - {algEntry.label}
               </span>
             ) : (
               <span
                 className={`bg-white/20 text-white text-xs border-2 border-white rounded-lg px-2 py-1 font-semibold`}
               >
-                {selectedChar} - Not Japanese
+                {hoveredChar || selectedChar} - Not Japanese
               </span>
             )}
           </div>
@@ -298,6 +300,8 @@ const KanjiResult = (props: ScorerProps) => {
             key={index}
             className={textClass}
             onClick={() => setSelectedChar(character)}
+            onMouseEnter={() => setHoveredChar(character)}
+            onMouseLeave={() => setHoveredChar("")}
           >
             {character}
           </span>

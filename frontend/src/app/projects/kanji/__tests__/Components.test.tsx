@@ -173,7 +173,7 @@ describe("Kanji Component UI", () => {
   test("Hovering over a character shows result", async () => {
     const user = userEvent.setup();
     const kanjiInput = screen.getByRole("textbox", { name: /kanji input/i });
-    const kanjiOutput = screen.getByText(/kanji result/i);
+    const kanjiOutput = screen.getByLabelText(/kanji result/i);
     await user.click(kanjiInput);
     await user.paste("日本語");
 
