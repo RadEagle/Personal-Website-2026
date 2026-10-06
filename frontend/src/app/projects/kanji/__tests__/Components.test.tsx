@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import { beforeEach, describe, expect, test, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { KanjiProject } from "../Components";
@@ -170,5 +170,42 @@ describe("Kanji Component UI", () => {
     expect(kanjiInput).toHaveValue("武");
   });
 
-  test("Typing updates complexity and result", () => {});
+  test("Hovering over a character shows result", async () => {
+    const user = userEvent.setup();
+    const kanjiInput = screen.getByRole("textbox", { name: /kanji input/i });
+    const kanjiOutput = screen.getByText(/kanji result/i);
+    await user.click(kanjiInput);
+    await user.paste("日本語");
+
+    const character = within(kanjiOutput).getAllByText("日")[0];
+    const character2 = within(kanjiOutput).getAllByText("本")[0];
+
+    expect(screen.queryByLabelText(/stickied result/i)).not.toBeInTheDocument();
+    await user.hover(character);
+    expect(screen.getByLabelText(/stickied result/i)).toBeInTheDocument();
+    await user.unhover(character);
+    expect(screen.queryByLabelText(/stickied result/i)).not.toBeInTheDocument();
+
+    await user.click(character2);
+
+    expect(screen.getByLabelText(/stickied result/i)).toBeInTheDocument();
+    await user.hover(character);
+    expect(screen.getByLabelText(/stickied result/i)).toBeInTheDocument();
+    await user.unhover(character);
+    expect(screen.getByLabelText(/stickied result/i)).toBeInTheDocument();
+  });
+
+  test("Clicking a character shows and sticks result", async () => {
+    const user = userEvent.setup();
+    const kanjiInput = screen.getByRole("textbox", { name: /kanji input/i });
+    const kanjiOutput = screen.getByLabelText(/kanji result/i);
+    await user.click(kanjiInput);
+    await user.paste("武");
+
+    const character = within(kanjiOutput).getAllByText("武")[0];
+
+    expect(screen.queryByLabelText(/stickied result/i)).not.toBeInTheDocument();
+    await user.click(character);
+    expect(screen.getByLabelText(/stickied result/i)).toBeInTheDocument();
+  });
 });
