@@ -50,5 +50,13 @@
     "tools": ["R", "Docker"],
     "startDate": "5/21/2021",
     "endDate": "10/10/2022"
+  },
+  "ai-opensource-capstone": {
+    "title": "AI Open Source Capstone Certificate",
+    "description": "Used AI to add accessibility shortcuts to a chemistry app.",
+    "organization": "CodePath",
+    "tools": ["Claude Code", "C++"],
+    "startDate": "9/16/2026",
+    "endDate": "11/18/2026"
   }
 }
